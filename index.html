@@ -1,0 +1,391 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ヘルプサポート</title>
+    <style>
+        /* 全体の見た目を整えるデザイン設定（CSS） */
+        * { box-sizing: border-box; }
+        body {
+            font-family: Arial, 'Hiragino Kaku Gothic ProN', sans-serif;
+            background-color: #5c5a58;
+            color: #333;
+            margin: 0;
+            padding: 20px;
+        }
+        .container {
+            max-width: 600px;
+            margin: 40px auto;
+            background: #f5f0e9;
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            
+            /* 📱 スマホ対策：画面が縦に小さくても、箱の中でスクロールできるようにします */
+            max-height: calc(100vh - 80px);
+            overflow-y: auto;
+        }
+        h1 {
+            font-size: 24px;
+            text-align: center;
+            color: #1f2937;
+            margin-bottom: 30px;
+        }
+        h2 {
+            font-size: 20px;
+            color: #1f2937;
+            border-left: 5px solid #2b1100;
+            padding-left: 10px;
+            margin-top: 0;
+        }
+        /* 追加したh3（小さめの縦棒付き見出し）の設定 */
+        h3 {
+            font-size: 16px;
+            color: #1f2937;
+            border-left: 4px solid #2b1100;
+            padding-left: 8px;
+            margin-top: 25px;
+            margin-bottom: 10px;
+        }
+        /* 大きく表示するチェック項目のスタイル */
+        .alert-title {
+            font-size: 22px;
+            font-weight: bold;
+            color: #dc2626;
+            margin: 20px 0 10px 0;
+        }
+        /* ボタンのデザイン */
+        .btn {
+            display: block;
+            width: 100%;
+            padding: 15px;
+            background-color: #2b1100;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: 16px;
+            font-weight: bold;
+            text-align: left;
+            cursor: pointer;
+            margin-bottom: 12px;
+            transition: background 0.2s, transform 0.2s; 
+        }
+        /* パソコンでカーソルを合わせたときの動き */
+        .btn:hover { 
+            background-color: #2563eb; 
+            transform: scale(1.03);
+        }
+        /* 戻るボタン */
+        .btn-back {
+            display: inline-block;
+            background-color: #9ca3af;
+            color: white;
+            padding: 8px 16px;
+            border: none;
+            border-radius: 6px;
+            font-size: 14px;
+            cursor: pointer;
+            margin-top: 20px;
+            transition: background 0.2s, transform 0.2s;
+        }
+        /* パソコンで戻るボタンにカーソルを合わせたときの動き */
+        .btn-back:hover { 
+            background-color: #4b5563; 
+            transform: scale(1.05);
+        }
+        /* 箇条書きのスタイル */
+        ul {
+            padding-left: 20px;
+            margin-bottom: 20px;
+        }
+        li {
+            font-size: 16px;
+            margin-bottom: 8px;
+            line-height: 1.5;
+        }
+        .contact-box {
+            background-color: #f9fafb;
+            border: 1px solid #e5e7eb;
+            padding: 15px;
+            border-radius: 8px;
+            margin-top: 15px;
+            font-weight: bold;
+        }
+        /* ページ（箱）の切り替え用設定 */
+        .page-section { display: none; }
+        .active { display: block; }
+
+        /* ==========================================
+           📱 ここからスマホ専用の設定（画面幅が狭いとき）
+           ========================================== */
+        @media (max-width: 480px) {
+            body {
+                padding: 10px;
+            }
+            .container {
+                margin: 10px auto;
+                padding: 20px 15px;
+                max-height: calc(100vh - 20px);
+            }
+            h1 {
+                font-size: 20px;
+                margin-bottom: 20px;
+            }
+            h2 {
+                font-size: 18px;
+            }
+            .btn {
+                font-size: 14px;
+                padding: 14px 12px;
+                margin-bottom: 10px;
+            }
+            .alert-title {
+                font-size: 18px;
+            }
+            li, .contact-box {
+                font-size: 14px;
+            }
+            
+            /* ⚠️ スマホで「カーソルが合いっぱなし」になるバグを消します */
+            .btn:hover, .btn-back:hover {
+                transform: none; 
+                background-color: #2b1100;
+            }
+            .btn-back:hover {
+                background-color: #9ca3af;
+            }
+
+            /* ✨ 代わりに「スマホで指が触れた瞬間」だけ、
+               フワッと一回り大きくなって青くなるように設定しました！ */
+            .btn:active {
+                transform: scale(1.03);
+                background-color: #2563eb;
+            }
+            .btn-back:active {
+                transform: scale(1.05);
+                background-color: #4b5563;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h1>何かお困りごとはありますか？</h1>
+
+    <div id="page-home" class="page-section active">
+        <button class="btn" onclick="showPage('page-smartphone')">スマホに音を流したい</button>
+        <button class="btn" onclick="showPage('page-guitar')">ギターの音が鳴りません</button>
+        <button class="btn" onclick="showPage('page-keybord')">キーボードの音が鳴りません</button>
+        <button class="btn" onclick="showPage('page-mic')">マイクから音が出ない、音が小さい</button>
+        <button class="btn" onclick="showPage('page-guitaramp')">ギターアンプの使用方法</button>
+    </div>
+
+    <div id="page-smartphone" class="page-section">
+        <h2>スマホに音を流したい</h2>
+        <button class="btn" onclick="showPage('page-audio-use')">オーディオケーブルの使い方</button>
+        <button class="btn" onclick="showPage('page-audio-error')">オーディオケーブルの音が鳴りません</button>
+        <button class="btn-back" onclick="showPage('page-home')"><- 戻る</button>
+    </div>
+
+    <div id="page-audio-use" class="page-section">
+        <h2>オーディオケーブルの使い方</h2>
+        <div class="contact-box">
+            ミキサーの横にオーディオケーブルがあります。変換端子（Lightning、typeC）をヘッドホン端子に挿し、ご利用のスマホに合わせた充電端子をスマホに接続してスマホの音量をMAXにしてください。<br><br>
+            その後、音源を再生しながらミキサーの“オーディオケーブル”というフェーダーの音量を少しずつ上げてください。<br><br>
+            音が鳴らない場合は1つ前のページに戻り、音が鳴らないときの対処法をご確認ください。<br><br>
+            その他ご不明点があればスタッフにお問い合わせください。
+        </div>
+        <button class="btn-back" onclick="showPage('page-smartphone')"><- 戻る</button>
+        <button class="btn-back" onclick="showPage('page-home')"><- 最初に戻る</button>
+    </div>
+
+    <div id="page-audio-error" class="page-section">
+        <div class="alert-title">この項目をチェックしてください。</div>
+        <ul>
+            <li>ミキサーの“オーディオケーブル”の音量はあがっていますか？</li>
+            <li>スマホの音量は上がっていますか？</li>
+            <li>変換端子とヘッドホン端子は半挿しになっていたり抜けておらずしっかりと刺さっていますか？</li>
+        </ul>
+        <div class="contact-box">
+            解決しない場合はスタッフにお問い合わせください。
+        </div>
+        <button class="btn-back" onclick="showPage('page-smartphone')"><- 戻る</button>
+        <button class="btn-back" onclick="showPage('page-home')"><- 最初に戻る</button>
+    </div>
+
+    <div id="page-guitar" class="page-section">
+        <h2>こちらの項目を確認してください</h2>
+        <button class="btn" onclick="showPage('page-naranai')">ギター直挿しで鳴りません</button>
+        <button class="btn" onclick="showPage('page-naru')">ギター直挿しにすると鳴ります</button>
+        <button class="btn-back" onclick="showPage('page-home')"><- 戻る</button>
+    </div>
+
+    <div id="page-naranai" class="page-section">
+        <div class="alert-title">この項目をチェックしてください。</div>
+        <ul>
+            <li>Marshallの場合、背面のケーブルは抜けていませんか？抜けていない場合、アンプまたはギターの故障が疑われます。</li>
+            <li>ギターのボリュームは上がっていますか？</li>
+            <li>シールドを変えて音は鳴りますか？</li>
+            <li>JCをご利用の場合、アンプのボリュームなどが上がっていても鳴らない場合、ギター本体またはアンプの故障が疑われます。</li>
+        </ul>
+        <div class="alert-title">Marshallのスピーカーケーブル抜けや不具合の場合はすぐに電源を落とし、スタッフをお呼びください。熱を持ったまま音出しをすると、最悪の場合は火事になります。</div>
+        <div class="contact-box">
+            機材の故障、（お客様の機材も場合によっては修理する事が可能です。）解決しない場合はお気軽にスタッフにお問い合わせください。
+        </div>
+        <button class="btn-back" onclick="showPage('page-guitar')"><- 戻る</button>
+        <button class="btn-back" onclick="showPage('page-home')"><- 最初に戻る</button>
+    </div>
+
+    <div id="page-naru" class="page-section">
+        <div class="alert-title">この項目をチェックしてください。</div>
+        <ul>
+            <li>エフェクターのOUTPUTにギター側のシールドが刺さっていませんか？</li>
+            <li>パッチケーブルやシールドの断線も疑われますので一部エフェクターを介さずに接続してみてください。</li>
+            <li>エフェクターのチューナー機能が押されたままになっていませんか？</li>
+        </ul>
+        <div class="contact-box">
+            解決しない場合はスタッフにお問い合わせください。
+        </div>
+        <button class="btn-back" onclick="showPage('page-guitar')"><- 戻る</button>
+        <button class="btn-back" onclick="showPage('page-home')"><- 最初に戻る</button>
+    </div>
+
+    <div id="page-keybord" class="page-section">
+        <h2>お使いのキーボードはどちらですか？</h2>
+        <button class="btn" onclick="showPage('page-mochikomi')">持ち込みキーボードの場合</button>
+        <button class="btn" onclick="showPage('page-josetu')">常設、またはレンタルキーボードの場合</button>
+        <button class="btn-back" onclick="showPage('page-home')"><- 戻る</button>
+    </div>
+
+    <div id="page-mochikomi" class="page-section">
+        <div class="alert-title">この項目をチェックしてください。</div>
+        <ul>
+            <li>キーボード本体のOUTPUTとミキサーまたはスピーカーとケーブルは繋がっていますか？（キーボードスピーカー横にある一部が水色のLRケーブルをご利用ください）</li>
+            <li>スピーカーにつないでいる場合、MASTERボリュームとエレピまたはシンセのノブの音量は上がっていますか？</li>
+        </ul>
+        <div class="contact-box">
+            解決しない場合は持ち込み機材の説明書を参照していただくかスタッフにお問い合わせください。
+        </div>
+        <button class="btn-back" onclick="showPage('page-keybord')"><- 戻る</button>
+        <button class="btn-back" onclick="showPage('page-home')"><- 最初に戻る</button>
+    </div>
+
+    <div id="page-josetu" class="page-section">
+        <div class="alert-title">この項目をチェックしてください。</div>
+        <ul>
+            <li>キーボード本体の電源はついていますか？</li>
+            <li>キーボードに接続されているキーボード横のスピーカーのMASTERボリュームと“エレピ”と書いてあるノブのボリュームは上がっていますか？</li>
+            <li>ミキサーのキーボードのフェーダーのボリュームは上がっていますか？</li>
+        </ul>
+        <div class="contact-box">
+            解決しない場合はスタッフにお問い合わせください。
+        </div>
+        <button class="btn-back" onclick="showPage('page-keybord')"><- 戻る</button>
+        <button class="btn-back" onclick="showPage('page-home')"><- 最初に戻る</button>
+    </div>
+
+    <div id="page-mic" class="page-section">
+        <h2>マイクから音が出ない、音が小さい</h2>
+        <button class="btn" onclick="showPage('page-micnaranai')">マイクの音が鳴らない</button>
+        <button class="btn" onclick="showPage('page-micnaru')">マイクの音が小さい</button>
+        <button class="btn-back" onclick="showPage('page-mic')"><- 戻る</button>
+    </div>
+
+    <div id="page-micnaranai" class="page-section">
+        <div class="alert-title">この項目をチェックしてください。</div>
+        <ul>
+            <li>ミキサーの該当色のフェーダーと、MASTERのフェーダーはあがっていますか？</li>
+            <li>ミキサーの該当色のフェーダーについているONボタンは黄色く光っていますか？</li>
+        </ul>
+        <div class="contact-box">
+            解決しない場合はスタッフにお問い合わせください。
+        </div>
+        <button class="btn-back" onclick="showPage('page-mic')"><- 戻る</button>
+        <button class="btn-back" onclick="showPage('page-home')"><- 最初に戻る</button>
+    </div>
+
+    <div id="page-micnaru" class="page-section">
+        <div class="alert-title">この項目をチェックしてください。</div>
+        <ul>
+            <li>ミキサーの該当色のフェーダーについているGAINノブは上がっていますか？</li>
+        </ul>
+        <div class="contact-box">
+            解決しない場合はスタッフにお問い合わせください。
+        </div>
+        <button class="btn-back" onclick="showPage('page-mic')"><- 戻る</button>
+        <button class="btn-back" onclick="showPage('page-home')"><- 最初に戻る</button>
+    </div>
+
+    <div id="page-guitaramp" class="page-section">
+        <h2>ギターアンプの取り扱い説明書・トラブルシューティング</h2>
+        <button class="btn" onclick="showPage('page-marshall2000')">marshall2000</button>
+        <button class="btn" onclick="showPage('page-marshall900')">marshall900</button>
+        <button class="btn" onclick="showPage('page-jc')">jc-120</button>
+        <button class="btn" onclick="showPage('page-twinreverb')">twinreverb</button>
+        <button class="btn-back" onclick="showPage('page-home')"><- 戻る</button>
+    </div>
+
+    <div id="page-marshall2000" class="page-section">
+        <h2>Marshall2000利用方法・トラブルシューティング</h2>
+        <button class="btn" onclick="showPage('page-dengen')">電源の付け方・消し方</button>
+        <button class="btn" onclick="showPage('page-channel')">channelA、channelBについて</button>
+        <button class="btn" onclick="showPage('page-sendretern')">センドリターンの利用方法</button>
+        <button class="btn-back" onclick="showPage('page-guitaramp')"><- 戻る</button>
+    </div>
+
+    <div id="page-dengen" class="page-section">
+        <h2>Marshall2000電源の付け方・消し方</h2>
+        <div class="contact-box">
+            筐体左側に赤いボタン(power)と黒いボタン(standby)があります。<br><br>
+            まず、赤いボタン(power)を押し、 <span style="color: red;">必ず２分待った後、</span>黒いボタン(standby)を押してください。<br><br>
+            電源を消す際は <span style="color: red;">黒いボタンのみ</span>消してください。
+        </div>
+        <button class="btn-back" onclick="showPage('page-marshall2000')"><- 戻る</button>
+    </div>
+
+    <div id="page-channel" class="page-section">
+        <h2>Marshall2000channnelA、channelBについて</h2>
+        <div class="contact-box">
+            Marshall2000にはChannelA、ChannelBがあり、それぞれAがクリーン、クランチトーン、Bがオーバードライブ、ディストーションの音色を鳴らすことが出来ます。<br><br>
+            CHA(channnelA)とCHB(channelB)の間にある小さいボタンを押すことでチャンネルの切り替えが出来ます。<br><br>
+            それぞれのチャンネルにも小さいボタンがついていますが、そのボタンを押すことでCHAはクリーンからクランチ、CHBはオーバードライブからディストーションに切り替えることが出来ます。<br><br>
+            フットスイッチを使用する場合は筐体背面のFOOTSWITCHジャックにフットスイッチをギター用シールドで接続してください。<br><br>
+        </div>
+        <button class="btn-back" onclick="showPage('page-marshall2000')"><- 戻る</button>
+    </div>
+
+    <div id="page-sendretern" class="page-section">
+        <h2>Marshall2000センドリターン使用について</h2>
+        <div class="contact-box">
+            Marshall2000の筐体の裏側にSEND、RETERNジャックがあります。 
+            <span style="color: blue;">ディレイやリバーブなどの空間系の音をMarshallの歪によって潰されることなく使用したり</span>、 
+            <span style="color: blue;">マルチエフェクターでの音作りをプリアンプ(Marshallでの音作り)を介さずエフェクターそのままの音を増幅させる(いわゆるリターン挿し)</span>目的で使用することができます。<br><br>
+
+            <h3>空間系のセンドリターンについて</h3>
+            ギター側から出ているシールドはフロントジャックに接続し(他の歪みエフェクターなどは追加していただいても大丈夫です。)、筐体裏側のSENDに空間系エフェクターのinput、RETERNにoutputをシールドでそれぞれ接続してください。<br><br>
+            こちらで完了です。<br><br>
+
+            <h3>Marshallのプリアンプ(歪み)を介さず音を出す(リターン挿し)方法について</h3>
+            初めにエフェクター部分のボリュームが完全にゼロになっていることを確認してください。<br><br>
+            ギター側から出ているシールドをマルチエフェクター等のinputに挿し、マルチエフェクターのoutputからアンプ裏面のRETERNにシールドを接続してください。<br><br>
+            アンプ前面のツマミ(volumeやgain、EQなど)は一切効かなくなります。音量調節、音作りはすべてマルチエフェクター側で行ってください。
+        </div>
+        <button class="btn-back" onclick="showPage('page-marshall2000')"><- 戻る</button>
+    </div>
+
+</div> <script>
+function showPage(pageId) {
+    const pages = document.querySelectorAll('.page-section');
+    pages.forEach(page => page.classList.remove('active'));
+
+    const targetPage = document.getElementById(pageId);
+    if (targetPage) {
+        targetPage.classList.add('active');
+    }
+}
+</script>
+
+</body>
+</html>
