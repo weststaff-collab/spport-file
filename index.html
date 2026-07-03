@@ -22,7 +22,7 @@
             border-radius: 12px;
             box-shadow: 0 4px 6px rgba(0,0,0,0.1);
             
-            /* 📱 スマホ対策：画面が縦に小さくても、箱の中でスクロールできるようにします */
+            /* スマホ対策 */
             max-height: calc(100vh - 80px);
             overflow-y: auto;
         }
@@ -39,7 +39,6 @@
             padding-left: 10px;
             margin-top: 0;
         }
-        /* 追加したh3（小さめの縦棒付き見出し）の設定 */
         h3 {
             font-size: 16px;
             color: #1f2937;
@@ -48,14 +47,12 @@
             margin-top: 25px;
             margin-bottom: 10px;
         }
-        /* 大きく表示するチェック項目のスタイル */
         .alert-title {
             font-size: 22px;
             font-weight: bold;
             color: #dc2626;
             margin: 20px 0 10px 0;
         }
-        /* ボタンのデザイン */
         .btn {
             display: block;
             width: 100%;
@@ -71,12 +68,10 @@
             margin-bottom: 12px;
             transition: background 0.2s, transform 0.2s; 
         }
-        /* パソコンでカーソルを合わせたときの動き */
         .btn:hover { 
             background-color: #2563eb; 
             transform: scale(1.03);
         }
-        /* 戻るボタン */
         .btn-back {
             display: inline-block;
             background-color: #9ca3af;
@@ -89,12 +84,10 @@
             margin-top: 20px;
             transition: background 0.2s, transform 0.2s;
         }
-        /* パソコンで戻るボタンにカーソルを合わせたときの動き */
         .btn-back:hover { 
             background-color: #4b5563; 
             transform: scale(1.05);
         }
-        /* 箇条書きのスタイル */
         ul {
             padding-left: 20px;
             margin-bottom: 20px;
@@ -112,13 +105,9 @@
             margin-top: 15px;
             font-weight: bold;
         }
-        /* ページ（箱）の切り替え用設定 */
         .page-section { display: none; }
         .active { display: block; }
 
-        /* ==========================================
-           📱 ここからスマホ専用の設定（画面幅が狭いとき）
-           ========================================== */
         @media (max-width: 480px) {
             body {
                 padding: 10px;
@@ -146,8 +135,6 @@
             li, .contact-box {
                 font-size: 14px;
             }
-            
-            /* ⚠️ スマホで「カーソルが合いっぱなし」になるバグを消します */
             .btn:hover, .btn-back:hover {
                 transform: none; 
                 background-color: #2b1100;
@@ -155,9 +142,6 @@
             .btn-back:hover {
                 background-color: #9ca3af;
             }
-
-            /* ✨ 代わりに「スマホで指が触れた瞬間」だけ、
-                フワッと一回り大きくなって青くなるように設定しました！ */
             .btn:active {
                 transform: scale(1.03);
                 background-color: #2563eb;
@@ -168,13 +152,12 @@
             }
         }
 
-        /* 追加：画像が画面幅に合わせて自動で縮小される設定 */
         .page-img {
-            max-width: 100%;    /* 箱（画面）の横幅より大きくならないように自動縮小 */
-            height: auto;       /* 縦横の比率（プロポーション）を崩さない */
-            display: block;     /* 文字の回り込みを防ぐ */
-            margin: 15px auto;  /* 画像の上下に少し隙間を開け、左右は中央に寄せる */
-            border-radius: 8px; /* 画像の角を少し丸くして綺麗に見せる */
+            max-width: 100%;
+            height: auto;
+            display: block;
+            margin: 15px auto;
+            border-radius: 8px;
         }
     </style>
 </head>
@@ -244,7 +227,7 @@
         </ul>
         <div class="alert-title">Marshallのスピーカーケーブル抜けや不具合の場合はすぐに電源を落とし、スタッフをお呼びください。熱を持ったまま音出しをすると、最悪の場合は火事になります。</div>
         <div class="contact-box">
-            機材の故障、（お客様の機材も場合によっては修理する事が可能です。）解決しない場合はお気軽にスタッフにお問い合わせください。
+            機材の故障、解決しない場合はお気軽にスタッフにお問い合わせください。
         </div>
         <button class="btn-back" onclick="showPage('page-guitar')"><- 戻る</button>
         <button class="btn-back" onclick="showPage('page-home')"><- 最初に戻る</button>
@@ -274,7 +257,7 @@
     <div id="page-mochikomi" class="page-section">
         <div class="alert-title">この項目をチェックしてください。</div>
         <ul>
-            <li>キーボード本体のOUTPUTとミキサーまたはスピーカーとケーブルは繋がっていますか？（キーボードスピーカー横にある一部が水色のLRケーブルをご利用ください）</li>
+            <li>キーボード本体のOUTPUTとミキサーまたはスピーカーとケーブルは繋がっていますか？</li>
             <li>スピーカーにつないでいる場合、MASTERボリュームとエレピまたはシンセのノブの音量は上がっていますか？</li>
             <img src="https://raw.githubusercontent.com/weststaff-collab/helppic/main/KC%E3%82%B7%E3%83%B3%E3%82%BB%E3%82%A8%E3%83%AC%E3%83%94.jpg" class="page-img">
             <img src="https://raw.githubusercontent.com/weststaff-collab/helppic/main/KC%E3%83%9E%E3%82%B9%E3%82%BF%E3%83%BC.jpg" class="page-img">
@@ -356,9 +339,9 @@
     <div id="page-dengen" class="page-section">
         <h2>Marshall2000、900電源の付け方・消し方</h2>
         <div class="contact-box">
-            筐体左側に赤いボタン(power)と黒いボタン(standby)があります。<br><br>
-            まず、赤いボタン(power)を押し、 <span style="color: red;">必ず２分待った後、</span>黒いボタン(standby)を押してください。<br><br>
-            電源を消す際は <span style="color: red;">黒いボタンのみ</span>消してください。
+            筐体left側に赤いボタン(power)と黒いボタン(standby)があります。<br><br>
+            まず、赤いボタン(power)を押し、必ず2分待った後、黒いボタン(standby)を押してください。<br><br>
+            電源を消す際は黒いボタンのみ消してください。
             <img src="https://raw.githubusercontent.com/weststaff-collab/helppic/main/2000standby.jpg" class="page-img">
             <img src="https://raw.githubusercontent.com/weststaff-collab/helppic/main/900.jpg" class="page-img">
         </div>
@@ -382,17 +365,17 @@
         <h2>Marshall2000センドリターン使用について</h2>
         <div class="contact-box">
             Marshall2000の筐体の裏側にSEND、RETERNジャックがあります。 
-            <span style="color: blue;">ディレイやリバーブなどの空間系の音をMarshallの歪みによって潰されることなく使用したり</span>、 
-            <span style="color: blue;">マルチエフェクターでの音作りをプリアンプ(Marshallでの音作り)を介さずエフェクターそのままの音を増幅させる(いわゆるリターン挿し)</span>目的で使用することができます。<br><br>
+            <span>ディレイやリバーブなどの空間系の音をMarshallの歪みによって潰されることなく使用したり</span>、 
+            <span>マルチエフェクターでの音作りをプリアンプ(Marshallでの音作り)を介さずエフェクターそのままの音を増幅させる(いわゆるリターン挿し)</span>目的で使用することができます。<br><br>
 
             <h3>空間系のセンドリターンについて</h3>
-            ギター側から出ているシールドはフロントジャックに接続し(他の歪みエフェクターなどは追加していただいても大丈夫です。)、筐体裏側のSENDに空間系エフェクターのinput、RETERNにoutputをシールドでそれぞれ接続してください。<br><br>
+            ギター側から出ているシールドはフロントジャックに接続し、筐体裏側のSENDに空間系エフェクターのinput、RETERNにoutputをシールドでそれぞれ接続してください。<br><br>
             こちらで完了です。<br><br>
 
-            <h3>Marshallのプリアンプ(歪み)を介さず音を出す(リターン挿し)方法について</h3>
+            <h3>Marshallのプリアンプを介さず音を出す(リターン挿し)方法について</h3>
             初めにエフェクター部分のボリュームが完全にゼロになっていることを確認してください。<br><br>
             ギター側から出ているシールドをマルチエフェクター等のinputに挿し、マルチエフェクターのoutputからアンプ裏面のRETERNにシールドを接続してください。<br><br>
-            アンプ前面のツマミ(volumeやgain、EQなど)は一切効かなくなります。音量調節、音作りはすべてマルチエフェクター側で行ってください。
+            アンプ前面のツマミは一切効かなくなります。音量調節、音作りはすべてマルチエフェクター側で行ってください。
         </div>
         <button class="btn-back" onclick="showPage('page-marshall2000')"><- 戻る</button>
     </div>
@@ -408,7 +391,7 @@
     <div id="page-channel900" class="page-section">
         <h2>Marshall900channnelA、channelBについて</h2>
         <div class="contact-box">
-            Marshall900にはChannelA、ChannelBがあり、それぞれAがクリーントーン、Bがディストーションの音色を鳴らすことが出来ます。それぞれ、右側のGAINノブで歪み具合を調整し、左側の２つのノブで音量、リバーブを調整してください。<br><br>
+            Marshall900にはChannelA、ChannelBがあり、それぞれAがクリーントーン、Bがディストーションの音色を鳴らすことが出来ます。それぞれ、右側のGAINノブで歪み具合を調整し、左側の2つのノブで音量、リバーブを調整してください。<br><br>
             フットスイッチを使用する場合は筐体背面のFOOTSWITCHジャックにフットスイッチをギター用シールドで接続してください。<br><br>
         </div>
         <button class="btn-back" onclick="showPage('page-marshall2000')"><- 戻る</button>
