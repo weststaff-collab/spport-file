@@ -167,6 +167,14 @@
                 background-color: #4b5563;
             }
         }
+/* 追加：画像が画面幅に合わせて自動で縮小される設定 */
+.page-img {
+    max-width: 100%;    /* 箱（画面）の横幅より大きくならないように自動縮小 */
+    height: auto;       /* 縦横の比率（プロポーション）を崩さない */
+    display: block;     /* 文字の回り込みを防ぐ */
+    margin: 15px auto;  /* 画像の上下に少し隙間を開け、左右は中央に寄せる */
+    border-radius: 8px; /* 好みで：画像の角を少し丸くして綺麗に見せる */
+}
     </style>
 </head>
 <body>
@@ -196,6 +204,7 @@
             その後、音源を再生しながらミキサーの“オーディオケーブル”というフェーダーの音量を少しずつ上げてください。<br><br>
             音が鳴らない場合は1つ前のページに戻り、音が鳴らないときの対処法をご確認ください。<br><br>
             その他ご不明点があればスタッフにお問い合わせください。
+　　  <img src="https://github.com/weststaff-collab/helppic/blob/main/%E3%81%A4%E3%81%8B%E3%81%84%E3%81%8B%E3%81%9F.jpg?raw=true"class="page-img">
         </div>
         <button class="btn-back" onclick="showPage('page-smartphone')"><- 戻る</button>
         <button class="btn-back" onclick="showPage('page-home')"><- 最初に戻る</button>
@@ -206,7 +215,8 @@
         <ul>
             <li>ミキサーの“オーディオケーブル”の音量はあがっていますか？</li>
             <li>スマホの音量は上がっていますか？</li>
-            <li>変換端子とヘッドホン端子は半挿しになっていたり抜けておらずしっかりと刺さっていますか？</li>
+            <li>変換端子とヘッドホン端子は半挿しになっていたり抜けておらずしっかりと刺さっていますか？        <div class="alert-title">※挿しなおす場合は必ずフェーダーの音量を0にしてから挿しなおしてください。</div> </li>
+　　  <img src="https://github.com/weststaff-collab/helppic/blob/main/%E5%8D%8A%E5%88%BA%E3%81%97%C3%97.jpg?raw=true"class="page-img">
         </ul>
         <div class="contact-box">
             解決しない場合はスタッフにお問い合わせください。
@@ -226,6 +236,7 @@
         <div class="alert-title">この項目をチェックしてください。</div>
         <ul>
             <li>Marshallの場合、背面のケーブルは抜けていませんか？抜けていない場合、アンプまたはギターの故障が疑われます。</li>
+　　  <img src="https://github.com/weststaff-collab/helppic/blob/main/supi.jpg?raw=true"class="page-img">
             <li>ギターのボリュームは上がっていますか？</li>
             <li>シールドを変えて音は鳴りますか？</li>
             <li>JCをご利用の場合、アンプのボリュームなどが上がっていても鳴らない場合、ギター本体またはアンプの故障が疑われます。</li>
@@ -264,6 +275,8 @@
         <ul>
             <li>キーボード本体のOUTPUTとミキサーまたはスピーカーとケーブルは繋がっていますか？（キーボードスピーカー横にある一部が水色のLRケーブルをご利用ください）</li>
             <li>スピーカーにつないでいる場合、MASTERボリュームとエレピまたはシンセのノブの音量は上がっていますか？</li>
+　　  <img src="https://github.com/weststaff-collab/helppic/blob/main/KC%E3%82%B7%E3%83%B3%E3%82%BB%E3%82%A8%E3%83%AC%E3%83%94.jpg?raw=true"class="page-img">
+　　  <img src="https://github.com/weststaff-collab/helppic/blob/main/KC%E3%83%9E%E3%82%B9%E3%82%BF%E3%83%BC.jpg?raw=true"class="page-img">
         </ul>
         <div class="contact-box">
             解決しない場合は持ち込み機材の説明書を参照していただくかスタッフにお問い合わせください。
@@ -277,6 +290,7 @@
         <ul>
             <li>キーボード本体の電源はついていますか？</li>
             <li>キーボードに接続されているキーボード横のスピーカーのMASTERボリュームと“エレピ”と書いてあるノブのボリュームは上がっていますか？</li>
+　　  <img src="https://github.com/weststaff-collab/helppic/blob/main/KC%E3%82%B7%E3%83%B3%E3%82%BB%E3%82%A8%E3%83%AC%E3%83%94.jpg?raw=true"class="page-img">
             <li>ミキサーのキーボードのフェーダーのボリュームは上がっていますか？</li>
         </ul>
         <div class="contact-box">
@@ -297,7 +311,9 @@
         <div class="alert-title">この項目をチェックしてください。</div>
         <ul>
             <li>ミキサーの該当色のフェーダーと、MASTERのフェーダーはあがっていますか？</li>
+　　  <img src="https://github.com/weststaff-collab/helppic/blob/main/%E3%83%9E%E3%82%A4%E3%82%AF%E3%83%95%E3%82%A7%E3%83%BC%E3%83%80%E3%83%BC%E7%A2%BA%E8%AA%8D.png?raw=true"class="page-img">
             <li>ミキサーの該当色のフェーダーについているONボタンは黄色く光っていますか？</li>
+　　  <img src="https://github.com/weststaff-collab/helppic/blob/main/%E3%83%9E%E3%82%A4%E3%82%AF%E3%82%AA%E3%83%B3%E3%82%AA%E3%83%95.jpg?raw=true"class="page-img">
         </ul>
         <div class="contact-box">
             解決しない場合はスタッフにお問い合わせください。
@@ -310,6 +326,7 @@
         <div class="alert-title">この項目をチェックしてください。</div>
         <ul>
             <li>ミキサーの該当色のフェーダーについているGAINノブは上がっていますか？</li>
+　　  <img src="https://github.com/weststaff-collab/helppic/blob/main/%E3%83%9E%E3%82%A4%E3%82%AF%E3%82%AA%E3%83%B3%E3%82%AA%E3%83%95.jpg?raw=true"class="page-img">
         </ul>
         <div class="contact-box">
             解決しない場合はスタッフにお問い合わせください。
@@ -336,13 +353,15 @@
     </div>
 
     <div id="page-dengen" class="page-section">
-        <h2>Marshall2000電源の付け方・消し方</h2>
+        <h2>Marshall2000、900電源の付け方・消し方</h2>
         <div class="contact-box">
             筐体左側に赤いボタン(power)と黒いボタン(standby)があります。<br><br>
             まず、赤いボタン(power)を押し、 <span style="color: red;">必ず２分待った後、</span>黒いボタン(standby)を押してください。<br><br>
             電源を消す際は <span style="color: red;">黒いボタンのみ</span>消してください。
+　　  <img src="https://github.com/weststaff-collab/helppic/blob/main/2000standby.jpg?raw=true"class="page-img">
+　　  <img src="https://github.com/weststaff-collab/helppic/blob/main/900.jpg?raw=true"class="page-img">
         </div>
-        <button class="btn-back" onclick="showPage('page-marshall2000')"><- 戻る</button>
+        <button class="btn-back" onclick="showPage('page-guitaramp')"><- 戻る</button>
     </div>
 
     <div id="page-channel" class="page-section">
@@ -352,15 +371,17 @@
             CHA(channnelA)とCHB(channelB)の間にある小さいボタンを押すことでチャンネルの切り替えが出来ます。<br><br>
             それぞれのチャンネルにも小さいボタンがついていますが、そのボタンを押すことでCHAはクリーンからクランチ、CHBはオーバードライブからディストーションに切り替えることが出来ます。<br><br>
             フットスイッチを使用する場合は筐体背面のFOOTSWITCHジャックにフットスイッチをギター用シールドで接続してください。<br><br>
+　　  <img src="https://github.com/weststaff-collab/helppic/blob/main/2000chab.jpg?raw=true"class="page-img">
+　　  <img src="https://github.com/weststaff-collab/helppic/blob/main/fts.jpg?raw=true"class="page-img">
         </div>
-        <button class="btn-back" onclick="showPage('page-marshall2000')"><- 戻る</button>
+        <button class="btn-back" onclick="showPage('page-guitaramp')"><- 戻る</button>
     </div>
 
     <div id="page-sendretern" class="page-section">
         <h2>Marshall2000センドリターン使用について</h2>
         <div class="contact-box">
             Marshall2000の筐体の裏側にSEND、RETERNジャックがあります。 
-            <span style="color: blue;">ディレイやリバーブなどの空間系の音をMarshallの歪によって潰されることなく使用したり</span>、 
+            <span style="color: blue;">ディレイやリバーブなどの空間系の音をMarshallの歪みによって潰されることなく使用したり</span>、 
             <span style="color: blue;">マルチエフェクターでの音作りをプリアンプ(Marshallでの音作り)を介さずエフェクターそのままの音を増幅させる(いわゆるリターン挿し)</span>目的で使用することができます。<br><br>
 
             <h3>空間系のセンドリターンについて</h3>
@@ -371,6 +392,23 @@
             初めにエフェクター部分のボリュームが完全にゼロになっていることを確認してください。<br><br>
             ギター側から出ているシールドをマルチエフェクター等のinputに挿し、マルチエフェクターのoutputからアンプ裏面のRETERNにシールドを接続してください。<br><br>
             アンプ前面のツマミ(volumeやgain、EQなど)は一切効かなくなります。音量調節、音作りはすべてマルチエフェクター側で行ってください。
+        </div>
+        <button class="btn-back" onclick="showPage('page-marshall2000')"><- 戻る</button>
+    </div>
+
+    <div id="page-marshall900" class="page-section">
+        <h2>Marshall900利用方法・トラブルシューティング</h2>
+        <button class="btn" onclick="showPage('page-dengen')">電源の付け方・消し方</button>
+        <button class="btn" onclick="showPage('page-channel900')">channelA、channelBについて</button>
+        <button class="btn" onclick="showPage('page-sendretern')">センドリターンの利用方法</button>
+        <button class="btn-back" onclick="showPage('page-guitaramp')"><- 戻る</button>
+    </div>
+
+    <div id="page-channel900" class="page-section">
+        <h2>Marshall900channnelA、channelBについて</h2>
+        <div class="contact-box">
+            Marshall900にはChannelA、ChannelBがあり、それぞれAがクリーントーン、Bがディストーションの音色を鳴らすことが出来ます。それぞれ、右側のGAINノブで歪み具合を調整し、左側の２つのノブで音量、リバーブを調整してください。<br><br>
+            フットスイッチを使用する場合は筐体背面のFOOTSWITCHジャックにフットスイッチをギター用シールドで接続してください。<br><br>
         </div>
         <button class="btn-back" onclick="showPage('page-marshall2000')"><- 戻る</button>
     </div>
