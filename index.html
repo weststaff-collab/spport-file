@@ -4,110 +4,169 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>ヘルプサポート</title>
-    <style>
+<style>
         /* 全体の見た目を整えるデザイン設定（CSS） */
-        * { box-sizing: border-box; }
+        * { 
+            box-sizing: border-box;
+        }
         body {
             font-family: Arial, 'Hiragino Kaku Gothic ProN', sans-serif;
-            background-color: #5c5a58;
+            background-color: #f8f9fa; /* 画像に合わせた明るい薄グレーの背景 */
             color: #333;
             margin: 0;
             padding: 20px;
         }
         .container {
-            max-width: 600px;
+            max-width: 850px; /* 画像のゆったりした横幅を再現 */
             margin: 40px auto;
-            background: #f5f0e9;
             padding: 30px;
-            border-radius: 12px;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-            
             /* スマホ対策 */
             max-height: calc(100vh - 80px);
             overflow-y: auto;
         }
+
+        /* メインタイトル：「よくあるご質問」 */
         h1 {
-            font-size: 24px;
+            font-size: 28px;
             text-align: center;
-            color: #1f2937;
-            margin-bottom: 30px;
+            color: #2b3044; /* 落ち着いたダークネイビー */
+            margin-bottom: 5px;
+            font-weight: bold;
         }
+
+        /* サブタイトル：「FAQ」とその下の飾り線 */
+        h1::after {
+            content: "FAQ";
+            display: block;
+            text-align: center;
+            font-size: 14px;
+            color: #a0aec0;
+            letter-spacing: 2px;
+            margin-top: 5px;
+            margin-bottom: 10px;
+            text-transform: uppercase;
+            font-weight: normal;
+        }
+        h1 + *::before {
+            /* ページ内の最初の要素の前に飾り線を引く（h1の下の細線） */
+            content: "";
+            display: block;
+            width: 50px;
+            height: 1px;
+            background-color: #cbd5e1;
+            margin: 0 auto 40px;
+        }
+
+        /* 下層ページの見出し（h2）はスッキリした中央寄せに変更 */
         h2 {
             font-size: 20px;
-            color: #1f2937;
-            border-left: 5px solid #2b1100;
-            padding-left: 10px;
+            color: #2b3044;
+            text-align: center;
             margin-top: 0;
+            margin-bottom: 30px;
+            font-weight: bold;
         }
+        
         h3 {
             font-size: 16px;
-            color: #1f2937;
-            border-left: 4px solid #2b1100;
-            padding-left: 8px;
+            color: #2b3044;
+            border-left: 4px solid #ff6f43;
+            padding-left: 10px;
             margin-top: 25px;
             margin-bottom: 10px;
         }
+
+        /* 警告・重要メッセージのタイトルスタイル */
         .alert-title {
-            font-size: 22px;
+            font-size: 16px;
             font-weight: bold;
-            color: #dc2626;
-            margin: 20px 0 10px 0;
+            color: #ff6f43; /* 質問と同じオレンジ系で統一感を持たせる */
+            margin: 10px 0 15px 24px;
         }
-        .btn {
+
+        /* リスト（ul/li）のスタイル調整 */
+        ul {
+            padding-left: 44px;
+            margin-bottom: 20px;
+        }
+        li {
+            font-size: 15px;
+            margin-bottom: 10px;
+            line-height: 1.6;
+            color: #4a5568;
+        }
+
+        /* ページセクションの制御 */
+        .page-section { 
+            display: none;
+        }
+        .active { 
             display: block;
+        }
+
+        /* --- 画像風のFAQアコーディオン風スタイル（元の.btnをリメイク） --- */
+        .btn {
+            display: flex;
+            justify-content: flex-start; /* 左寄せに変更し、文字が右寄りに離れてしまうのを防ぐ */
+            align-items: center;
             width: 100%;
-            padding: 15px;
-            background-color: #2b1100;
-            color: white;
-            border: none;
+            padding: 20px 24px;
+            background: #ffffff; /* 白色のクリーンな背景 */
+            color: #ff6f43;      /* 画像のような鮮やかなオレンジ色 */
+            border: 1px solid #eef0f4;
             border-radius: 8px;
             font-size: 16px;
             font-weight: bold;
             text-align: left;
             cursor: pointer;
             margin-bottom: 12px;
-            transition: background 0.2s, transform 0.2s; 
+            box-shadow: 0 1px 3px rgba(0,0,0,0.03);
+            transition: background 0.2s, box-shadow 0.2s;
         }
-        .btn:hover { 
-            background-color: #2563eb; 
-            transform: scale(1.03);
+        .btn:hover {
+            background-color: #fafbfc;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.06);
         }
+        /* ボタンテキストの先頭に「Q」を付与する */
+        .btn::before {
+            content: "Q";
+            margin-right: 8px; /* 「Q」の直後にテキストが心地よく並ぶよう隙間を調整 */
+        }
+ 
+        /* 回答が入るボックス（元の.contact-boxをリメイク） */
+        .contact-box {
+            background-color: #ffffff;
+            border: 1px solid #eef0f4;
+            border-radius: 8px;
+            padding: 24px;
+            margin-top: -4px;      /* 上のタイトルと密着させてアコーディオンが開いた風に見せる */
+            margin-bottom: 20px;
+            font-size: 15px;
+            color: #4a5568;
+            line-height: 1.7;
+            font-weight: normal;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.03);
+        }
+
+        /* 戻るボタンのスタイリング */
         .btn-back {
             display: inline-block;
             background-color: #9ca3af;
             color: white;
-            padding: 8px 16px;
+            padding: 10px 20px;
             border: none;
             border-radius: 6px;
             font-size: 14px;
             cursor: pointer;
-            margin-top: 20px;
-            transition: background 0.2s, transform 0.2s;
+            margin-top: 15px;
+            margin-right: 10px;
+            transition: background 0.2s;
         }
         .btn-back:hover { 
-            background-color: #4b5563; 
-            transform: scale(1.05);
+            background-color: #4b5563;
         }
-        ul {
-            padding-left: 20px;
-            margin-bottom: 20px;
-        }
-        li {
-            font-size: 16px;
-            margin-bottom: 8px;
-            line-height: 1.5;
-        }
-        .contact-box {
-            background-color: #f9fafb;
-            border: 1px solid #e5e7eb;
-            padding: 15px;
-            border-radius: 8px;
-            margin-top: 15px;
-            font-weight: bold;
-        }
-        .page-section { display: none; }
-        .active { display: block; }
 
+        /* レスポンシブ対応（スマホ表示の最適化） */
         @media (max-width: 480px) {
             body {
                 padding: 10px;
@@ -118,40 +177,45 @@
                 max-height: calc(100vh - 20px);
             }
             h1 {
-                font-size: 20px;
-                margin-bottom: 20px;
+                font-size: 22px;
             }
             h2 {
-                font-size: 18px;
+                font-size: 16px;
+                margin-bottom: 20px;
             }
             .btn {
                 font-size: 14px;
-                padding: 14px 12px;
-                margin-bottom: 10px;
+                padding: 16px 16px;
             }
-            .alert-title {
-                font-size: 18px;
-            }
-            li, .contact-box {
+            .btn::after {
                 font-size: 14px;
             }
-            .btn:hover, .btn-back:hover {
-                transform: none; 
-                background-color: #2b1100;
+            .contact-box {
+                padding: 16px;
+                font-size: 13px;
             }
-            .btn-back:hover {
-                background-color: #9ca3af;
+            .alert-title {
+                font-size: 14px;
+                margin-left: 16px;
+            }
+            ul {
+                padding-left: 24px;
+            }
+            li {
+                font-size: 13px;
+            }
+            .btn:hover, .btn-back:hover {
+                transform: none;
             }
             .btn:active {
-                transform: scale(1.03);
-                background-color: #2563eb;
+                background-color: #fafbfc;
             }
             .btn-back:active {
-                transform: scale(1.05);
                 background-color: #4b5563;
             }
         }
 
+        /* 画像要素の最適化 */
         .page-img {
             max-width: 100%;
             height: auto;
@@ -159,8 +223,7 @@
             margin: 15px auto;
             border-radius: 8px;
         }
-    </style>
-</head>
+</style></head>
 <body>
 
 <div class="container">
@@ -310,7 +373,7 @@
         <div class="alert-title">この項目をチェックしてください。</div>
         <ul>
             <li>ミキサーの該当色のフェーダーについているGAINノブは上がっていますか？</li>
-            <img src="https://raw.githubusercontent.com/weststaff-collab/helppic/main/%E3%83%9E%E3%82%A4%E3%82%AF%E3%82%AA%E3%83%B3%E3%82%AA%E3%83%95.jpg" class="page-img">
+      <img src="https://github.com/weststaff-collab/helppic/blob/main/%E3%83%9E%E3%82%A4%E3%82%AF%E3%82%B2%E3%82%A4%E3%83%B3.jpg?raw=true" class="page-img">
         </ul>
         <div class="contact-box">
             解決しない場合はスタッフにお問い合わせください。
