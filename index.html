@@ -387,7 +387,7 @@
         <button class="btn" onclick="showPage('page-marshall2000')">marshall2000</button>
         <button class="btn" onclick="showPage('page-marshall900')">marshall900</button>
         <button class="btn" onclick="showPage('page-jc')">jc-120</button>
-        <button class="btn" onclick="showPage('page-twinreverb')">twinreverb</button>
+        <button class="btn" onclick="showPage('page-twinreverb')">twinreverb(制作中)</button>
         <button class="btn-back" onclick="showPage('page-home')"><- 戻る</button>
     </div>
 
@@ -489,9 +489,9 @@
          CH2はクリーントーンに加え、軽いディストーション、リバーブ、筐体左側のVIB、CHO(Vibrato、Chorus)を使用できます。<br><br>
         ディストーションはMarshallなどといった真空管アンプとは異なり、金属的な軽い音になります。音に太さを少し足したい時や低温を削ったような歪みが必要な時に使用します。<br><br>
          <h3>💡VIB、CHOについて知りたいですか？</h3>
-        <button class="btn" onclick="showPage('page-vibcho')">Vibrato、chorusについて</button>
+         <button class="btn" onclick="showPage('page-vibcho2')">Vibrato、chorusについて</button>
          <h3>💡センドリターンについて知りたいですか？</h3>
-        <button class="btn" onclick="showPage('page-sendretern')">センドリターンについて</button>
+        <button class="btn" onclick="showPage('page-sendretern2')">センドリターンについて</button>
         <button class="btn-back" onclick="showPage('page-jc')"><- 戻る</button>
         <button class="btn-back" onclick="showPage('page-home')"><- 最初に戻る</button>
     </div>
@@ -508,6 +508,37 @@
         <button class="btn-back" onclick="showPage('page-jc')"><- 戻る</button>
         <button class="btn-back" onclick="showPage('page-home')"><- 最初に戻る</button>
 </div> 
+    <div id="page-vibcho2" class="page-section">
+      <h2>jazz chorus120vibrato、chorusについて</h2>
+            <h3>Vibratoについて</h3>
+                      VIBの部分につまみを合わせると、揺れるような音色になります。<br><br>
+                     VIBの時のみ左側のSPEED、DEPTHのつまみが機能し、CHOの時は機能しません。<br><br>
+                    それぞれSPEEDは揺れの速さ、DEPTHは揺れの深さを調節します。<br><br>
+            <h3>Chorusについて</h3>
+                     CHOの部分につまみを合わせると2つのアンプとスピーカーを使い、片方で原音、もう片方でピッチを揺らした音色になります。<br><br>
+                     SPEED、DEPTHノブは機能しません。<br><br>
+        <button class="btn-back" onclick="showPage('page-jcch')"><- 戻る</button>
+        <button class="btn-back" onclick="showPage('page-home')"><- 最初に戻る</button>
+</div> 
+    <div id="page-sendretern2" class="page-section">
+        <h2>センドリターン使用について</h2>
+        <div class="contact-box">
+           筐体の裏側にSEND、RETERNジャックがあります。 
+            <span>ディレイやリバーブなどの空間系の音を歪みによって潰されることなく使用したり</span>、 
+            <span>マルチエフェクターでの音作りをプリアンプ(アンプでの音作り)を介さずエフェクターそのままの音を増幅させる(いわゆるリターン挿し)</span>目的で使用することができます。<br><br>
+
+            <h3>空間系のセンドリターンについて</h3>
+            ギター側から出ているシールドはフロントジャックに接続し、筐体裏側のSENDに空間系エフェクターのinput、RETERNにoutputをシールドでそれぞれ接続してください。<br><br>
+          JCの場合は筐体裏面のLINE OUTに挿してください。<br><br>
+            こちらで完了です。<br><br>
+
+            <h3>プリアンプを介さず音を出す(リターン挿し)方法について</h3>
+            初めにエフェクター部分のボリュームが完全にゼロになっていることを確認してください。<br><br>
+            ギター側から出ているシールドをマルチエフェクター等のinputに挿し、マルチエフェクターのoutputからアンプ裏面のRETERNにシールドを接続してください。<br><br>
+            アンプ前面のツマミは一切効かなくなります。音量調節、音作りはすべてマルチエフェクター側で行ってください。<br><br>
+        <button class="btn-back" onclick="showPage('page-jcch')"><- 戻る</button>
+        <button class="btn-back" onclick="showPage('page-home')"><- 最初に戻る</button>
+        </div>
 
 <script>
 function showPage(pageId) {
