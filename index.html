@@ -167,13 +167,14 @@
                 background-color: #4b5563;
             }
         }
+
         /* 追加：画像が画面幅に合わせて自動で縮小される設定 */
         .page-img {
             max-width: 100%;    /* 箱（画面）の横幅より大きくならないように自動縮小 */
             height: auto;       /* 縦横の比率（プロポーション）を崩さない */
             display: block;     /* 文字の回り込みを防ぐ */
             margin: 15px auto;  /* 画像の上下に少し隙間を開け、左右は中央に寄せる */
-            border-radius: 8px; /* 好みで：画像の角を少し丸くして綺麗に見せる */
+            border-radius: 8px; /* 画像の角を少し丸くして綺麗に見せる */
         }
     </style>
 </head>
@@ -414,6 +415,7 @@
     </div>
 
 </div> 
+
 <script>
 function showPage(pageId) {
     const pages = document.querySelectorAll('.page-section');
