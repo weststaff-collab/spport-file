@@ -238,7 +238,7 @@
     </div>
 
     <div id="page-smartphone" class="page-section">
-        <h2>スマホに音を流したい</h2>
+        <h2>スマホで音源を流したい</h2>
         <button class="btn" onclick="showPage('page-audio-use')">オーディオケーブルの使い方</button>
         <button class="btn" onclick="showPage('page-audio-error')">オーディオケーブルの音が鳴りません</button>
         <button class="btn-back" onclick="showPage('page-home')"><- 戻る</button>
@@ -274,8 +274,8 @@
 
     <div id="page-guitar" class="page-section">
         <h2>こちらの項目を確認してください</h2>
-        <button class="btn" onclick="showPage('page-naranai')">ギター直挿しで鳴りません</button>
-        <button class="btn" onclick="showPage('page-naru')">ギター直挿しにすると鳴ります</button>
+        <button class="btn" onclick="showPage('page-naranai')">アンプ直挿しで鳴りません</button>
+        <button class="btn" onclick="showPage('page-naru')">アンプ直挿しにすると鳴ります</button>
         <button class="btn-back" onclick="showPage('page-home')"><- 戻る</button>
     </div>
 
@@ -378,7 +378,7 @@
         <div class="contact-box">
             解決しない場合はスタッフにお問い合わせください。
         </div>
-        <button class="btn-back" onclick="showPage('page-mic')"><- 2000戻る</button>
+        <button class="btn-back" onclick="showPage('page-mic')"><-戻る</button>
         <button class="btn-back" onclick="showPage('page-home')"><- 最初に戻る</button>
     </div>
 
@@ -402,9 +402,9 @@
     <div id="page-dengen" class="page-section">
         <h2>Marshall2000、900電源の付け方・消し方</h2>
         <div class="contact-box">
-            筐体left側に赤いボタン(power)と黒いボタン(standby)があります。<br><br>
+            筐体左側に赤いボタン(power)と黒いボタン(standby)があります。<br><br>
             まず、赤いボタン(power)を押し、必ず2分待った後、黒いボタン(standby)を押してください。<br><br>
-            電源を消す際は黒いボタンのみ消してください。
+            退室の際は黒いボタンのみ消してください。
             <img src="https://raw.githubusercontent.com/weststaff-collab/helppic/main/2000standby.jpg" class="page-img">
             <img src="https://raw.githubusercontent.com/weststaff-collab/helppic/main/900.jpg" class="page-img">
         </div>
@@ -425,22 +425,24 @@
     </div>
 
     <div id="page-sendretern" class="page-section">
-        <h2>Marshall2000センドリターン使用について</h2>
+        <h2>センドリターン使用について</h2>
         <div class="contact-box">
-            Marshall2000の筐体の裏側にSEND、RETERNジャックがあります。 
-            <span>ディレイやリバーブなどの空間系の音をMarshallの歪みによって潰されることなく使用したり</span>、 
-            <span>マルチエフェクターでの音作りをプリアンプ(Marshallでの音作り)を介さずエフェクターそのままの音を増幅させる(いわゆるリターン挿し)</span>目的で使用することができます。<br><br>
+           筐体の裏側にSEND、RETERNジャックがあります。 
+            <span>ディレイやリバーブなどの空間系の音を歪みによって潰されることなく使用したり</span>、 
+            <span>マルチエフェクターでの音作りをプリアンプ(アンプでの音作り)を介さずエフェクターそのままの音を増幅させる(いわゆるリターン挿し)</span>目的で使用することができます。<br><br>
 
             <h3>空間系のセンドリターンについて</h3>
             ギター側から出ているシールドはフロントジャックに接続し、筐体裏側のSENDに空間系エフェクターのinput、RETERNにoutputをシールドでそれぞれ接続してください。<br><br>
+          JCの場合は筐体裏面のLINE OUTに挿してください。<br><br>
             こちらで完了です。<br><br>
 
-            <h3>Marshallのプリアンプを介さず音を出す(リターン挿し)方法について</h3>
+            <h3>プリアンプを介さず音を出す(リターン挿し)方法について</h3>
             初めにエフェクター部分のボリュームが完全にゼロになっていることを確認してください。<br><br>
             ギター側から出ているシールドをマルチエフェクター等のinputに挿し、マルチエフェクターのoutputからアンプ裏面のRETERNにシールドを接続してください。<br><br>
-            アンプ前面のツマミは一切効かなくなります。音量調節、音作りはすべてマルチエフェクター側で行ってください。
+            アンプ前面のツマミは一切効かなくなります。音量調節、音作りはすべてマルチエフェクター側で行ってください。<br><br>
+
         </div>
-        <button class="btn-back" onclick="showPage('page-marshall2000')"><- 戻る</button>
+        <button class="btn-back" onclick="showPage('page-guitaramp')"><- 戻る</button>
     </div>
 
     <div id="page-marshall900" class="page-section">
@@ -458,8 +460,53 @@
             フットスイッチを使用する場合は筐体背面のFOOTSWITCHジャックにフットスイッチをギター用シールドで接続してください。<br><br>
         </div>
         <button class="btn-back" onclick="showPage('page-marshall2000')"><- 戻る</button>
+        <button class="btn-back" onclick="showPage('page-home')"><- 最初に戻る</button>
     </div>
 
+    <div id="page-jc" class="page-section">
+        <h2>Marshall2000利用方法・トラブルシューティング</h2>
+        <button class="btn" onclick="showPage('page-dengenjc')">電源の付け方・消し方</button>
+        <button class="btn" onclick="showPage('page-jcch')">channel1、channel2について</button>
+        <button class="btn" onclick="showPage('page-vibcho')">Vibrato、chorusについて</button>
+        <button class="btn" onclick="showPage('page-sendretern')">センドリターンについて</button>
+        <button class="btn-back" onclick="showPage('page-guitaramp')"><- 戻る</button>
+    </div>
+
+    <div id="page-dengenjc" class="page-section">
+        <h2>jazz chorus120電源の付け方・消し方</h2>
+        <div class="contact-box">
+            筐体右側に黒いボタンがあります。1回押すとライトが点灯し、使用できます。<br><br>
+           inputジャックに、high、lowとありますが、エフェクターやアクティブのギターを使用する場合はlowを使用してください。<br><br>
+        </div>
+        <button class="btn-back" onclick="showPage('page-jc')"><- 戻る</button>
+        <button class="btn-back" onclick="showPage('page-home')"><- 最初に戻る</button>
+    </div>
+    <div id="page-jcch" class="page-section">
+        <h2>jazz chorus120CH1、CH2について</h2>
+            <h3>CH1</h3>
+          CH1はCH2と違い、フラットなクリーントーンとなり、CH2よりノイズが少ないです。センドリターンを使用する場合は機能しませんのでご注意下さい。<br><br>
+          <h3>CH2</h3>
+         CH2はクリーントーンに加え、軽いディストーション、リバーブ、筐体左側のVIB、CHO(Vibrato、Chorus)を使用できます。<br><br>
+        ディストーションはMarshallなどといった真空管アンプとは異なり、金属的な軽い音になります。音に太さを少し足したい時や低温を削ったような歪みが必要な時に使用します。<br><br>
+         <h3>💡VIB、CHOについて知りたいですか？</h3>
+        <button class="btn" onclick="showPage('page-vibcho')">Vibrato、chorusについて</button>
+         <h3>💡センドリターンについて知りたいですか？</h3>
+        <button class="btn" onclick="showPage('page-sendretern')">センドリターンについて</button>
+        <button class="btn-back" onclick="showPage('page-jc')"><- 戻る</button>
+        <button class="btn-back" onclick="showPage('page-home')"><- 最初に戻る</button>
+    </div>
+
+    <div id="page-vibcho" class="page-section">
+      <h2>jazz chorus120vibrato、chorusについて</h2>
+            <h3>Vibratoについて</h3>
+                      VIBの部分につまみを合わせると、揺れるような音色になります。<br><br>
+                     VIBの時のみ左側のSPEED、DEPTHのつまみが機能し、CHOの時は機能しません。<br><br>
+                    それぞれSPEEDは揺れの速さ、DEPTHは揺れの深さを調節します。<br><br>
+            <h3>Chorusについて</h3>
+                     CHOの部分につまみを合わせると2つのアンプとスピーカーを使い、片方で原音、もう片方でピッチを揺らした音色になります。<br><br>
+                     SPEED、DEPTHノブは機能しません。<br><br>
+        <button class="btn-back" onclick="showPage('page-jc')"><- 戻る</button>
+        <button class="btn-back" onclick="showPage('page-home')"><- 最初に戻る</button>
 </div> 
 
 <script>
