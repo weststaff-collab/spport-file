@@ -51,10 +51,46 @@
             width: 50px;
             height: 1px;
             background-color: #cbd5e1;
-            margin: 0 auto 40px;
+            margin: 0 auto 20px; /* パンくずリストとの間隔調整のため下を20pxに縮小 */
         }
 
-        /* 下層ページの見出し（h2）はスッキリした中央寄せに変更 */
+        /* --- 新設：パンくずリスト（カテゴリ）のスタイル --- */
+        .breadcrumb {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            list-style: none;
+            padding: 0;
+            margin: 0 auto 30px;
+            font-size: 13px;
+            color: #a0aec0; /* 薄い灰色 */
+        }
+        .breadcrumb li {
+            margin-bottom: 0;
+            font-size: 13px;
+            color: #a0aec0;
+        }
+        .breadcrumb li+li::before {
+            content: ">";
+            padding: 0 8px;
+            color: #cbd5e1;
+        }
+        .breadcrumb a {
+            color: #a0aec0;
+            text-decoration: none;
+            cursor: pointer;
+        }
+        .breadcrumb a:hover {
+            text-decoration: underline;
+            color: #4a5568; /* ホバー時は少し濃く */
+        }
+        /* 現在のページ（末尾）はリンク風にしない */
+        .breadcrumb li:last-child span {
+            color: #718096;
+            font-weight: bold;
+        }
+
+        /* 下層ページの見出し（h2） */
         h2 {
             font-size: 20px;
             color: #2b3044;
@@ -101,15 +137,15 @@
             display: block;
         }
 
-        /* --- 画像風のFAQアコーディオン風スタイル（元の.btnをリメイク） --- */
+        /* --- 画像風のFAQアコーディオン風スタイル --- */
         .btn {
             display: flex;
-            justify-content: flex-start; /* 左寄せに変更し、文字が右寄りに離れてしまうのを防ぐ */
+            justify-content: flex-start;
             align-items: center;
             width: 100%;
             padding: 20px 24px;
-            background: #ffffff; /* 白色のクリーンな背景 */
-            color: #ff6f43;      /* 画像のような鮮やかなオレンジ色 */
+            background: #ffffff;
+            color: #ff6f43;
             border: 1px solid #eef0f4;
             border-radius: 8px;
             font-size: 16px;
@@ -127,16 +163,16 @@
         /* ボタンテキストの先頭に「Q」を付与する */
         .btn::before {
             content: "Q";
-            margin-right: 8px; /* 「Q」の直後にテキストが心地よく並ぶよう隙間を調整 */
+            margin-right: 8px;
         }
  
-        /* 回答が入るボックス（元の.contact-boxをリメイク） */
+        /* 回答が入るボックス */
         .contact-box {
             background-color: #ffffff;
             border: 1px solid #eef0f4;
             border-radius: 8px;
             padding: 24px;
-            margin-top: -4px;      /* 上のタイトルと密着させてアコーディオンが開いた風に見せる */
+            margin-top: -4px;
             margin-bottom: 20px;
             font-size: 15px;
             color: #4a5568;
@@ -179,12 +215,16 @@
                 font-size: 16px;
                 margin-bottom: 20px;
             }
+            .breadcrumb {
+                font-size: 11px;
+                margin-bottom: 20px;
+            }
+            .breadcrumb li {
+                font-size: 11px;
+            }
             .btn {
                 font-size: 14px;
                 padding: 16px 16px;
-            }
-            .btn::after {
-                font-size: 14px;
             }
             .contact-box {
                 padding: 16px;
@@ -202,12 +242,6 @@
             }
             .btn:hover, .btn-back:hover {
                 transform: none;
-            }
-            .btn:active {
-                background-color: #fafbfc;
-            }
-            .btn-back:active {
-                background-color: #4b5563;
             }
         }
 
@@ -227,6 +261,8 @@
     <h1>何かお困りごとはありますか？</h1>
 
     <div id="page-home" class="page-section active">
+        <ul class="breadcrumb"><li><span>トップ</span></li></ul>
+        
         <button class="btn" onclick="showPage('page-smartphone')">スマホに音を流したい</button>
         <button class="btn" onclick="showPage('page-guitar')">ギターの音が鳴りません</button>
         <button class="btn" onclick="showPage('page-keybord')">キーボードの音が鳴りません</button>
@@ -235,6 +271,10 @@
     </div>
 
     <div id="page-smartphone" class="page-section">
+        <ul class="breadcrumb">
+            <li><a onclick="showPage('page-home')">トップ</a></li>
+            <li><span>スマホで音源を流したい</span></li>
+        </ul>
         <h2>スマホで音源を流したい</h2>
         <button class="btn" onclick="showPage('page-audio-use')">オーディオケーブルの使い方</button>
         <button class="btn" onclick="showPage('page-audio-error')">オーディオケーブルの音が鳴りません</button>
@@ -242,19 +282,28 @@
     </div>
 
     <div id="page-audio-use" class="page-section">
+        <ul class="breadcrumb">
+            <li><a onclick="showPage('page-home')">トップ</a></li>
+            <li><a onclick="showPage('page-smartphone')">スマホで音源を流したい</a></li>
+            <li><span>オーディオケーブルの使い方</span></li>
+        </ul>
         <h2>オーディオケーブルの使い方</h2>
         <div class="contact-box">
             ミキサーの横にオーディオケーブルがあります。変換端子（Lightning、typeC）をヘッドホン端子に挿し、ご利用のスマホに合わせた充電端子をスマホに接続してスマホの音量をMAXにしてください。<br><br>
             その後、音源を再生しながらミキサーの“オーディオケーブル”というフェーダーの音量を少しずつ上げてください。<br><br>
             音が鳴らない場合は1つ前のページに戻り、音が鳴らないときの対処法をご確認ください。<br><br>
             その他ご不明点があればスタッフにお問い合わせください。
-            <img src="https://raw.githubusercontent.com/weststaff-collab/helppic/main/%E3%81%A4%E3%81%8B%E3%81%84%E3%81%8B%E3%81%9F.jpg" class="page-img">
-        </div>
+         <img src="https://raw.githubusercontent.com/weststaff-collab/helppic/main/%E3%81%A4%E3%81%8B%E3%81%84%E3%81%8B%E3%81%9F.jpg" class="page-img">        </div>
         <button class="btn-back" onclick="showPage('page-smartphone')"><- 戻る</button>
         <button class="btn-back" onclick="showPage('page-home')"><- 最初に戻る</button>
     </div>
 
     <div id="page-audio-error" class="page-section">
+        <ul class="breadcrumb">
+            <li><a onclick="showPage('page-home')">トップ</a></li>
+            <li><a onclick="showPage('page-smartphone')">スマホで音源を流したい</a></li>
+            <li><span>音が鳴らない場合</span></li>
+        </ul>
         <div class="alert-title">この項目をチェックしてください。</div>
         <ul>
             <li>ミキサーの“オーディオケーブル”の音量はあがっていますか？</li>
@@ -270,6 +319,10 @@
     </div>
 
     <div id="page-guitar" class="page-section">
+        <ul class="breadcrumb">
+            <li><a onclick="showPage('page-home')">トップ</a></li>
+            <li><span>ギターの音確認</span></li>
+        </ul>
         <h2>こちらの項目を確認してください</h2>
         <button class="btn" onclick="showPage('page-naranai')">アンプ直挿しで鳴りません</button>
         <button class="btn" onclick="showPage('page-naru')">アンプ直挿しにすると鳴ります</button>
@@ -277,6 +330,11 @@
     </div>
 
     <div id="page-naranai" class="page-section">
+        <ul class="breadcrumb">
+            <li><a onclick="showPage('page-home')">トップ</a></li>
+            <li><a onclick="showPage('page-guitar')">ギターの音確認</a></li>
+            <li><span>アンプ直挿しで鳴らない</span></li>
+        </ul>
         <div class="alert-title">この項目をチェックしてください。</div>
         <ul>
             <li>Marshallの場合、背面のケーブルは抜けていませんか？抜けていない場合、アンプまたはギターの故障が疑われます。</li>
@@ -294,6 +352,11 @@
     </div>
 
     <div id="page-naru" class="page-section">
+        <ul class="breadcrumb">
+            <li><a onclick="showPage('page-home')">トップ</a></li>
+            <li><a onclick="showPage('page-guitar')">ギターの音確認</a></li>
+            <li><span>アンプ直挿しで鳴る</span></li>
+        </ul>
         <div class="alert-title">この項目をチェックしてください。</div>
         <ul>
             <li>エフェクターのOUTPUTにギター側のシールドが刺さっていませんか？</li>
@@ -308,6 +371,10 @@
     </div>
 
     <div id="page-keybord" class="page-section">
+        <ul class="breadcrumb">
+            <li><a onclick="showPage('page-home')">トップ</a></li>
+            <li><span>キーボード選択</span></li>
+        </ul>
         <h2>お使いのキーボードはどちらですか？</h2>
         <button class="btn" onclick="showPage('page-mochikomi')">持ち込みキーボードの場合</button>
         <button class="btn" onclick="showPage('page-josetu')">常設、またはレンタルキーボードの場合</button>
@@ -315,6 +382,11 @@
     </div>
 
     <div id="page-mochikomi" class="page-section">
+        <ul class="breadcrumb">
+            <li><a onclick="showPage('page-home')">トップ</a></li>
+            <li><a onclick="showPage('page-keybord')">キーボードが鳴らない</a></li>
+            <li><span>持ち込みキーボード</span></li>
+        </ul>
         <div class="alert-title">この項目をチェックしてください。</div>
         <ul>
             <li>キーボード本体のOUTPUTとミキサーまたはスピーカーとケーブルは繋がっていますか？</li>
@@ -330,6 +402,11 @@
     </div>
 
     <div id="page-josetu" class="page-section">
+        <ul class="breadcrumb">
+            <li><a onclick="showPage('page-home')">トップ</a></li>
+            <li><a onclick="showPage('page-keybord')">キーボードが鳴らない</a></li>
+            <li><span>常設・レンタルキーボード</span></li>
+        </ul>
         <div class="alert-title">この項目をチェックしてください。</div>
         <ul>
             <li>キーボード本体の電源はついていますか？</li>
@@ -345,6 +422,10 @@
     </div>
 
     <div id="page-mic" class="page-section">
+        <ul class="breadcrumb">
+            <li><a onclick="showPage('page-home')">トップ</a></li>
+            <li><span>マイクのトラブル</span></li>
+        </ul>
         <h2>マイクから音が出ない、音が小さい</h2>
         <button class="btn" onclick="showPage('page-micnaranai')">マイクの音が鳴らない</button>
         <button class="btn" onclick="showPage('page-micnaru')">マイクの音が小さい</button>
@@ -352,6 +433,11 @@
     </div>
 
     <div id="page-micnaranai" class="page-section">
+        <ul class="breadcrumb">
+            <li><a onclick="showPage('page-home')">トップ</a></li>
+            <li><a onclick="showPage('page-mic')">マイクのトラブル</a></li>
+            <li><span>音が鳴らない</span></li>
+        </ul>
         <div class="alert-title">この項目をチェックしてください。</div>
         <ul>
             <li>ミキサーの該当色のフェーダーと、MASTERのフェーダーはあがっていますか？</li>
@@ -367,6 +453,11 @@
     </div>
 
     <div id="page-micnaru" class="page-section">
+        <ul class="breadcrumb">
+            <li><a onclick="showPage('page-home')">トップ</a></li>
+            <li><a onclick="showPage('page-mic')">マイクのトラブル</a></li>
+            <li><span>音が小さい</span></li>
+        </ul>
         <div class="alert-title">この項目をチェックしてください。</div>
         <ul>
             <li>ミキサーの該当色のフェーダーについているGAINノブは上がっていますか？</li>
@@ -380,6 +471,10 @@
     </div>
 
     <div id="page-guitaramp" class="page-section">
+        <ul class="breadcrumb">
+            <li><a onclick="showPage('page-home')">トップ</a></li>
+            <li><span>アンプ選択</span></li>
+        </ul>
         <h2>ギターアンプの取り扱い説明書・トラブルシューティング</h2>
         <button class="btn" onclick="showPage('page-marshall2000')">marshall2000</button>
         <button class="btn" onclick="showPage('page-marshall900')">marshall900</button>
@@ -389,6 +484,11 @@
     </div>
 
     <div id="page-marshall2000" class="page-section">
+        <ul class="breadcrumb">
+            <li><a onclick="showPage('page-home')">トップ</a></li>
+            <li><a onclick="showPage('page-guitaramp')">アンプ選択</a></li>
+            <li><span>Marshall2000</span></li>
+        </ul>
         <h2>Marshall2000利用方法・トラブルシューティング</h2>
         <button class="btn" onclick="showPage('page-dengen')">電源の付け方・消し方</button>
         <button class="btn" onclick="showPage('page-channel')">channelA、channelBについて</button>
@@ -397,6 +497,12 @@
     </div>
 
     <div id="page-dengen" class="page-section">
+        <ul class="breadcrumb">
+            <li><a onclick="showPage('page-home')">トップ</a></li>
+            <li><a onclick="showPage('page-guitaramp')">アンプ選択</a></li>
+            <li><a onclick="showPage('page-marshall2000')">Marshall2000、900</a></li>
+            <li><span>電源の付け方・消し方</span></li>
+        </ul>
         <h2>Marshall2000、900電源の付け方・消し方</h2>
         <div class="contact-box">
             筐体left側に赤いボタン(power)と黒いボタン(standby)があります。<br><br>
@@ -409,6 +515,12 @@
     </div>
 
     <div id="page-channel" class="page-section">
+        <ul class="breadcrumb">
+            <li><a onclick="showPage('page-home')">トップ</a></li>
+            <li><a onclick="showPage('page-guitaramp')">アンプ選択</a></li>
+            <li><a onclick="showPage('page-marshall2000')">Marshall2000</a></li>
+            <li><span>チャンネルについて</span></li>
+        </ul>
         <h2>Marshall2000channnelA、channelBについて</h2>
         <div class="contact-box">
             Marshall2000にはChannelA、ChannelBがあり、それぞれAがクリーン、クランチトーン、Bがオーバードライブ、ディストーションの音色を鳴らすことが出来ます。<br><br>
@@ -422,6 +534,12 @@
     </div>
 
     <div id="page-sendretern" class="page-section">
+        <ul class="breadcrumb">
+            <li><a onclick="showPage('page-home')">トップ</a></li>
+            <li><a onclick="showPage('page-guitaramp')">アンプ選択</a></li>
+            <li><a onclick="showPage('page-guitaramp')">ギターアンプ</a></li>
+            <li><span>センドリターン</span></li>
+        </ul>
         <h2>センドリターン使用について</h2>
         <div class="contact-box">
             筐体の裏側にSEND、RETERNジャックがあります。 
@@ -442,6 +560,11 @@
     </div>
 
     <div id="page-marshall900" class="page-section">
+        <ul class="breadcrumb">
+            <li><a onclick="showPage('page-home')">トップ</a></li>
+            <li><a onclick="showPage('page-guitaramp')">アンプ選択</a></li>
+            <li><span>Marshall900</span></li>
+        </ul>
         <h2>Marshall900利用方法・トラブルシューティング</h2>
         <button class="btn" onclick="showPage('page-dengen')">電源の付け方・消し方</button>
         <button class="btn" onclick="showPage('page-channel900')">channelA、channelBについて</button>
@@ -450,6 +573,12 @@
     </div>
 
     <div id="page-channel900" class="page-section">
+        <ul class="breadcrumb">
+            <li><a onclick="showPage('page-home')">トップ</a></li>
+            <li><a onclick="showPage('page-guitaramp')">アンプ選択</a></li>
+            <li><a onclick="showPage('page-marshall900')">Marshall900</a></li>
+            <li><span>チャンネルについて</span></li>
+        </ul>
         <h2>Marshall900channnelA、channelBについて</h2>
         <div class="contact-box">
             Marshall900にはChannelA、ChannelBがあり、それぞれAがクリーントーン、Bがディストーションの音色を鳴らすことが出来ます。それぞれ、右側のGAINノブで歪み具合を調整し、左側の2つのノブで音量、リバーブを調整してください。<br><br>
@@ -460,6 +589,11 @@
     </div>
 
     <div id="page-jc" class="page-section">
+        <ul class="breadcrumb">
+            <li><a onclick="showPage('page-home')">トップ</a></li>
+            <li><a onclick="showPage('page-guitaramp')">アンプ選択</a></li>
+            <li><span>JC-120</span></li>
+        </ul>
         <h2>Jazz Chorus120利用方法・トラブルシューティング</h2>
         <button class="btn" onclick="showPage('page-dengenjc')">電源の付け方・消し方</button>
         <button class="btn" onclick="showPage('page-jcch')">channel1、channel2について</button>
@@ -469,6 +603,12 @@
     </div>
 
     <div id="page-dengenjc" class="page-section">
+        <ul class="breadcrumb">
+            <li><a onclick="showPage('page-home')">トップ</a></li>
+            <li><a onclick="showPage('page-guitaramp')">アンプ選択</a></li>
+            <li><a onclick="showPage('page-jc')">JC-120</a></li>
+            <li><span>電源の付け方・消し方</span></li>
+        </ul>
         <h2>jazz chorus120電源の付け方・消し方</h2>
         <div class="contact-box">
             筐体right側に黒いボタンがあります。1回押すとライトが点灯し、使用できます。<br><br>
@@ -479,6 +619,12 @@
     </div>
 
     <div id="page-jcch" class="page-section">
+        <ul class="breadcrumb">
+            <li><a onclick="showPage('page-home')">トップ</a></li>
+            <li><a onclick="showPage('page-guitaramp')">アンプ選択</a></li>
+            <li><a onclick="showPage('page-jc')">JC-120</a></li>
+            <li><span>チャンネルについて</span></li>
+        </ul>
         <h2>jazz chorus120CH1、CH2について</h2>
         <div class="contact-box">
             <h3>CH1</h3>
@@ -496,6 +642,12 @@
     </div>
 
     <div id="page-vibcho" class="page-section">
+        <ul class="breadcrumb">
+            <li><a onclick="showPage('page-home')">トップ</a></li>
+            <li><a onclick="showPage('page-guitaramp')">アンプ選択</a></li>
+            <li><a onclick="showPage('page-jc')">JC-120</a></li>
+            <li><span>Vibrato・Chorus</span></li>
+        </ul>
         <h2>jazz chorus120vibrato、chorusについて</h2>
         <div class="contact-box">
             <h3>Vibratoについて</h3>
@@ -511,6 +663,13 @@
     </div> 
 
     <div id="page-vibcho2" class="page-section">
+        <ul class="breadcrumb">
+            <li><a onclick="showPage('page-home')">トップ</a></li>
+            <li><a onclick="showPage('page-guitaramp')">アンプ選択</a></li>
+            <li><a onclick="showPage('page-jc')">JC-120</a></li>
+            <li><a onclick="showPage('page-jcch')">チャンネルについて</a></li>
+            <li><span>Vibrato・Chorus</span></li>
+        </ul>
         <h2>jazz chorus120vibrato、chorusについて</h2>
         <div class="contact-box">
             <h3>Vibratoについて</h3>
@@ -526,6 +685,13 @@
     </div> 
 
     <div id="page-sendretern2" class="page-section">
+        <ul class="breadcrumb">
+            <li><a onclick="showPage('page-home')">トップ</a></li>
+            <li><a onclick="showPage('page-guitaramp')">アンプ選択</a></li>
+            <li><a onclick="showPage('page-jc')">JC-120</a></li>
+            <li><a onclick="showPage('page-jcch')">チャンネルについて</a></li>
+            <li><span>センドリターン</span></li>
+        </ul>
         <h2>センドリターン使用について</h2>
         <div class="contact-box">
             筐体の裏側にSEND、RETERNジャックがあります。 
@@ -556,6 +722,8 @@ function showPage(pageId) {
     const targetPage = document.getElementById(pageId);
     if (targetPage) {
         targetPage.classList.add('active');
+        // ページが切り替わったときに最上部へスクロールさせる
+        window.scrollTo({top: 0, behavior: 'smooth'});
     }
 }
 </script>
