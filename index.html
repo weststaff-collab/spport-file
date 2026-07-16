@@ -54,7 +54,7 @@
             margin: 0 auto 20px; /* パンくずリストとの間隔調整のため下を20pxに縮小 */
         }
 
-        /* --- 新設：パンくずリスト（カテゴリ）のスタイル --- */
+        /* パンくずリスト（カテゴリ）のスタイル */
         .breadcrumb {
             display: flex;
             flex-wrap: wrap;
@@ -137,7 +137,7 @@
             display: block;
         }
 
-        /* --- 画像風のFAQアコーディオン風スタイル --- */
+        /* FAQアコーディオン風スタイル */
         .btn {
             display: flex;
             justify-content: flex-start;
@@ -164,6 +164,11 @@
         .btn::before {
             content: "Q";
             margin-right: 8px;
+        }
+
+        /* フィードバック送信ボタンなど、先頭に「Q」をつけたくない特殊なボタン用 */
+        .btn-no-q::before {
+            content: none !important;
         }
  
         /* 回答が入るボックス */
@@ -253,23 +258,30 @@
             margin: 15px auto;
             border-radius: 8px;
         }
-</style>
+    </style>
 </head>
 <body>
 
 <div class="container">
     <h1>何かお困りごとはありますか？</h1>
 
+    <!-- 1. トップページ -->
     <div id="page-home" class="page-section active">
         <ul class="breadcrumb"><li><span>トップ</span></li></ul>
         
-        <button class="btn" onclick="showPage('page-smartphone')">スマホに音を流したい</button>
+        <button class="btn" onclick="showPage('page-smartphone')">スマホで音を流したい</button>
         <button class="btn" onclick="showPage('page-guitar')">ギターの音が鳴りません</button>
         <button class="btn" onclick="showPage('page-keyboard')">キーボードの音が鳴りません</button>
         <button class="btn" onclick="showPage('page-mic')">マイクから音が出ない、音が小さい</button>
         <button class="btn" onclick="showPage('page-guitaramp')">ギターアンプの使用方法</button>
+        
+        <!-- ご不満・改善要望フォームへの導線ボタン -->
+        <button class="btn btn-no-q" onclick="showPage('page-feedback')" style="margin-top: 30px; background-color: #f1f5f9; color: #475569; border: 1px dashed #cbd5e1;">
+            💡 匿名でご意見をお寄せください。
+        </button>
     </div>
 
+    <!-- 2. スマホ音源選択 -->
     <div id="page-smartphone" class="page-section">
         <ul class="breadcrumb">
             <li><a onclick="showPage('page-home')">トップ</a></li>
@@ -278,9 +290,10 @@
         <h2>スマホで音源を流したい</h2>
         <button class="btn" onclick="showPage('page-audio-use')">オーディオケーブルの使い方</button>
         <button class="btn" onclick="showPage('page-audio-error')">オーディオケーブルの音が鳴りません</button>
-        <button class="btn-back" onclick="showPage('page-home')">&lt;- 戻る</button>
+        <button class="btn-back" onclick="showPage('page-home')">← トップに戻る</button>
     </div>
 
+    <!-- 2-1. オーディオケーブルの使い方 -->
     <div id="page-audio-use" class="page-section">
         <ul class="breadcrumb">
             <li><a onclick="showPage('page-home')">トップ</a></li>
@@ -289,39 +302,41 @@
         </ul>
         <h2>オーディオケーブルの使い方</h2>
         <div class="contact-box">
-            ミキサーの横にオーディオケーブルがあります。変換端子（Lightning、typeC）をヘッドホン端子に挿し、ご利用のスマホに合わせた充電端子をスマホに接続してスマホの音量をMAXにしてください。<br><br>
+            ミキサーの横にオーディオケーブルがあります。変換端子（Lightning、typeC）をヘッドホン端子に挿し、ご利用 of スマホに合わせた充電端子をスマホに接続してスマホの音量をMAXにしてください。<br><br>
             その後、音源を再生しながらミキサーの“オーディオケーブル”というフェーダーの音量を少しずつ上げてください。<br><br>
             音が鳴らない場合は1つ前のページに戻り、音が鳴らないときの対処法をご確認ください。<br><br>
             その他ご不明点があればスタッフにお問い合わせください。
-            <img src="https://raw.githubusercontent.com/weststaff-collab/helppic/main/%E3%81%A4%E3%81%8B%E3%81%84%E3%81%8B%E3%81%9F.jpg" class="page-img" alt="使い方">
+            <img src="https://raw.githubusercontent.com/weststaff-collab/helppic/main/useing.jpg?" class="page-img" alt="オーディオケーブルの使い方">
         </div>
-        <button class="btn-back" onclick="showPage('page-smartphone')">&lt;- 戻る</button>
-        <button class="btn-back" onclick="showPage('page-home')">&lt;- 最初に戻る</button>
+        <button class="btn-back" onclick="showPage('page-smartphone')">← 戻る</button>
+        <button class="btn-back" onclick="showPage('page-home')">← 最初に戻る</button>
     </div>
 
+    <!-- 2-2. スマホの音が鳴らない場合 -->
     <div id="page-audio-error" class="page-section">
         <ul class="breadcrumb">
             <li><a onclick="showPage('page-home')">トップ</a></li>
             <li><a onclick="showPage('page-smartphone')">スマホで音源を流したい</a></li>
             <li><span>音が鳴らない場合</span></li>
         </ul>
+        <h2>音が鳴らない場合</h2>
         <div class="alert-title">この項目をチェックしてください。</div>
         <ul>
             <li>ミキサーの“オーディオケーブル”の音量はあがっていますか？</li>
             <li>スマホの音量は上がっていますか？</li>
-            <li>
-                変換端子とヘッドホン端子は半挿しになっていたり抜けておらずしっかりと刺さっていますか？
-                <div class="alert-title">※挿しなおす場合は必ずフェーダーの音量を0にしてから挿しなおしてください。</div>
+            <li>変換端子とヘッドホン端子は半挿しになっていたり抜けておらずしっかりと刺さっていますか？
+                <div class="alert-title" style="margin-left:0; margin-top:10px;">※挿しなおす場合は必ずフェーダーの音量を0にしてから挿しなおしてください。</div>
             </li>
         </ul>
-        <img src="https://raw.githubusercontent.com/weststaff-collab/helppic/main/hansashi.jpg" class="page-img" alt="半挿し注意">
+        <img src="https://raw.githubusercontent.com/weststaff-collab/helppic/main/hansashi.jpg" class="page-img" alt="半挿しの注意">
         <div class="contact-box">
             解決しない場合はスタッフにお問い合わせください。
         </div>
-        <button class="btn-back" onclick="showPage('page-smartphone')">&lt;- 戻る</button>
-        <button class="btn-back" onclick="showPage('page-home')">&lt;- 最初に戻る</button>
+        <button class="btn-back" onclick="showPage('page-smartphone')">← 戻る</button>
+        <button class="btn-back" onclick="showPage('page-home')">← 最初に戻る</button>
     </div>
 
+    <!-- 3. ギター音確認選択 -->
     <div id="page-guitar" class="page-section">
         <ul class="breadcrumb">
             <li><a onclick="showPage('page-home')">トップ</a></li>
@@ -330,15 +345,17 @@
         <h2>こちらの項目を確認してください</h2>
         <button class="btn" onclick="showPage('page-naranai')">アンプ直挿しで鳴りません</button>
         <button class="btn" onclick="showPage('page-naru')">アンプ直挿しにすると鳴ります</button>
-        <button class="btn-back" onclick="showPage('page-home')">&lt;- 戻る</button>
+        <button class="btn-back" onclick="showPage('page-home')">← 戻る</button>
     </div>
 
+    <!-- 3-1. アンプ直挿しで鳴らない -->
     <div id="page-naranai" class="page-section">
         <ul class="breadcrumb">
             <li><a onclick="showPage('page-home')">トップ</a></li>
             <li><a onclick="showPage('page-guitar')">ギターの音確認</a></li>
             <li><span>アンプ直挿しで鳴らない</span></li>
         </ul>
+        <h2>アンプ直挿しで鳴らない場合</h2>
         <div class="alert-title">この項目をチェックしてください。</div>
         <ul>
             <li>Marshallの場合、背面のケーブルは抜けていませんか？抜けていない場合、アンプまたはギターの故障が疑われます。</li>
@@ -353,16 +370,18 @@
         <div class="contact-box">
             機材の故障、解決しない場合はお気軽にスタッフにお問い合わせください。
         </div>
-        <button class="btn-back" onclick="showPage('page-guitar')">&lt;- 戻る</button>
-        <button class="btn-back" onclick="showPage('page-home')">&lt;- 最初に戻る</button>
+        <button class="btn-back" onclick="showPage('page-guitar')">← 戻る</button>
+        <button class="btn-back" onclick="showPage('page-home')">← 最初に戻る</button>
     </div>
 
+    <!-- 3-2. アンプ直挿しで鳴る（エフェクター側の問題） -->
     <div id="page-naru" class="page-section">
         <ul class="breadcrumb">
             <li><a onclick="showPage('page-home')">トップ</a></li>
             <li><a onclick="showPage('page-guitar')">ギターの音確認</a></li>
             <li><span>アンプ直挿しで鳴る</span></li>
         </ul>
+        <h2>アンプ直挿しで鳴る場合</h2>
         <div class="alert-title">この項目をチェックしてください。</div>
         <ul>
             <li>エフェクターのOUTPUTにギター側のシールドが刺さっていませんか？</li>
@@ -372,10 +391,11 @@
         <div class="contact-box">
             解決しない場合はスタッフにお問い合わせください。
         </div>
-        <button class="btn-back" onclick="showPage('page-guitar')">&lt;- 戻る</button>
-        <button class="btn-back" onclick="showPage('page-home')">&lt;- 最初に戻る</button>
+        <button class="btn-back" onclick="showPage('page-guitar')">← 戻る</button>
+        <button class="btn-back" onclick="showPage('page-home')">← 最初に戻る</button>
     </div>
 
+    <!-- 4. キーボード選択 -->
     <div id="page-keyboard" class="page-section">
         <ul class="breadcrumb">
             <li><a onclick="showPage('page-home')">トップ</a></li>
@@ -384,51 +404,56 @@
         <h2>お使いのキーボードはどちらですか？</h2>
         <button class="btn" onclick="showPage('page-mochikomi')">持ち込みキーボードの場合</button>
         <button class="btn" onclick="showPage('page-josetu')">常設、またはレンタルキーボードの場合</button>
-        <button class="btn-back" onclick="showPage('page-home')">&lt;- 戻る</button>
+        <button class="btn-back" onclick="showPage('page-home')">← 戻る</button>
     </div>
 
+    <!-- 4-1. 持ち込みキーボード -->
     <div id="page-mochikomi" class="page-section">
         <ul class="breadcrumb">
             <li><a onclick="showPage('page-home')">トップ</a></li>
-            <li><a onclick="showPage('page-keyboard')">キーボードが鳴らない</a></li>
+            <li><a onclick="showPage('page-keyboard')">キーボード選択</a></li>
             <li><span>持ち込みキーボード</span></li>
         </ul>
+        <h2>持ち込みキーボードが鳴らない場合</h2>
         <div class="alert-title">この項目をチェックしてください。</div>
         <ul>
             <li>キーボード本体のOUTPUTとミキサーまたはスピーカーとケーブルは繋がっていますか？</li>
             <li>スピーカーにつないいる場合、MASTERボリュームとエレピまたはシンセのノブの音量は上がっていますか？</li>
         </ul>
-        <img src="https://raw.githubusercontent.com/weststaff-collab/helppic/main/KC%E3%82%B7%E3%83%B3%E3%82%BB%E3%82%A8%E3%83%AC%E3%83%94.jpg" class="page-img" alt="シンセエレピノブ">
-        <img src="https://raw.githubusercontent.com/weststaff-collab/helppic/main/KC%E3%83%9E%E3%82%B9%E3%82%BF%E3%83%BC.jpg" class="page-img" alt="マスターノブ">
+        <img src="https://raw.githubusercontent.com/weststaff-collab/helppic/main/KC%E3%82%B7%E3%83%B3%E3%82%BB%E3%82%A8%E3%83%AC%E3%83%94.jpg" class="page-img" alt="シンセ・エレピつまみ">
+        <img src="https://raw.githubusercontent.com/weststaff-collab/helppic/main/KC%E3%83%9E%E3%82%B9%E3%82%BF%E3%83%BC.jpg" class="page-img" alt="マスターつまみ">
         <div class="contact-box">
             解決しない場合は持ち込み機材の説明書を参照していただくかスタッフにお問い合わせください。
         </div>
-        <button class="btn-back" onclick="showPage('page-keyboard')">&lt;- 戻る</button>
-        <button class="btn-back" onclick="showPage('page-home')">&lt;- 最初に戻る</button>
+        <button class="btn-back" onclick="showPage('page-keyboard')">← 戻る</button>
+        <button class="btn-back" onclick="showPage('page-home')">← 最初に戻る</button>
     </div>
 
+    <!-- 4-2. 常設・レンタルキーボード -->
     <div id="page-josetu" class="page-section">
         <ul class="breadcrumb">
             <li><a onclick="showPage('page-home')">トップ</a></li>
-            <li><a onclick="showPage('page-keyboard')">キーボードが鳴らない</a></li>
+            <li><a onclick="showPage('page-keyboard')">キーボード選択</a></li>
             <li><span>常設・レンタルキーボード</span></li>
         </ul>
+        <h2>常設・レンタルキーボードが鳴らない場合</h2>
         <div class="alert-title">この項目をチェックしてください。</div>
         <ul>
             <li>キーボード本体の電源はついていますか？</li>
             <li>キーボードに接続されているキーボード横のスピーカーのMASTERボリュームと“エレピ”と書いてあるノブのボリュームは上がっていますか？</li>
         </ul>
-        <img src="https://raw.githubusercontent.com/weststaff-collab/helppic/main/KC%E3%82%B7%E3%83%B3%E3%82%BB%E3%82%A8%E3%83%AC%E3%83%94.jpg" class="page-img" alt="シンセエレピノブ">
+        <img src="https://raw.githubusercontent.com/weststaff-collab/helppic/main/KC%E3%82%B7%E3%83%B3%E3%82%BB%E3%82%A8%E3%83%AC%E3%83%94.jpg" class="page-img" alt="シンセ・エレピつまみ">
         <ul>
             <li>ミキサーのキーボードのフェーダーのボリュームは上がっていますか？</li>
         </ul>
         <div class="contact-box">
             解決しない場合はスタッフにお問い合わせください。
         </div>
-        <button class="btn-back" onclick="showPage('page-keyboard')">&lt;- 戻る</button>
-        <button class="btn-back" onclick="showPage('page-home')">&lt;- 最初に戻る</button>
+        <button class="btn-back" onclick="showPage('page-keyboard')">← 戻る</button>
+        <button class="btn-back" onclick="showPage('page-home')">← 最初に戻る</button>
     </div>
 
+    <!-- 5. マイクのトラブル選択 -->
     <div id="page-mic" class="page-section">
         <ul class="breadcrumb">
             <li><a onclick="showPage('page-home')">トップ</a></li>
@@ -437,15 +462,17 @@
         <h2>マイクから音が出ない、音が小さい</h2>
         <button class="btn" onclick="showPage('page-micnaranai')">マイクの音が鳴らない</button>
         <button class="btn" onclick="showPage('page-micnaru')">マイクの音が小さい</button>
-        <button class="btn-back" onclick="showPage('page-home')">&lt;- 戻る</button>
+        <button class="btn-back" onclick="showPage('page-home')">← 戻る</button>
     </div>
 
+    <!-- 5-1. マイクの音が鳴らない -->
     <div id="page-micnaranai" class="page-section">
         <ul class="breadcrumb">
             <li><a onclick="showPage('page-home')">トップ</a></li>
             <li><a onclick="showPage('page-mic')">マイクのトラブル</a></li>
             <li><span>音が鳴らない</span></li>
         </ul>
+        <h2>マイクの音が鳴らない場合</h2>
         <div class="alert-title">この項目をチェックしてください。</div>
         <ul>
             <li>ミキサーの該当色のフェーダーと、MASTERのフェーダーはあがっていますか？</li>
@@ -454,45 +481,48 @@
         <ul>
             <li>ミキサーの該当色のフェーダーについているONボタンは黄色く光っていますか？</li>
         </ul>
-        <img src="https://raw.githubusercontent.com/weststaff-collab/helppic/main/%E3%83%9E%E3%82%A4%E3%82%AF%E3%83%95%E3%82%A7%E3%83%BC%E3%83%80%E3%83%BC%E7%A2%BA%E8%AA%8D.png" class="page-img" alt="フェーダー確認">
         <div class="contact-box">
             解決しない場合はスタッフにお問い合わせください。
         </div>
-        <button class="btn-back" onclick="showPage('page-mic')">&lt;- 戻る</button>
-        <button class="btn-back" onclick="showPage('page-home')">&lt;- 最初に戻る</button>
+        <button class="btn-back" onclick="showPage('page-mic')">← 戻る</button>
+        <button class="btn-back" onclick="showPage('page-home')">← 最初に戻る</button>
     </div>
 
+    <!-- 5-2. マイクの音が小さい -->
     <div id="page-micnaru" class="page-section">
         <ul class="breadcrumb">
             <li><a onclick="showPage('page-home')">トップ</a></li>
             <li><a onclick="showPage('page-mic')">マイクのトラブル</a></li>
             <li><span>音が小さい</span></li>
         </ul>
+        <h2>マイクの音が小さい場合</h2>
         <div class="alert-title">この項目をチェックしてください。</div>
         <ul>
             <li>ミキサーの該当色のフェーダーについているGAINノブは上がっていますか？</li>
         </ul>
-        <img src="https://raw.githubusercontent.com/weststaff-collab/helppic/main/%E3%83%9E%E3%82%A4%E3%82%AF%E3%82%B2%E3%82%A4%E3%83%B3.jpg" class="page-img" alt="ゲイン確認">
+        <img src="https://raw.githubusercontent.com/weststaff-collab/helppic/main/%E3%83%9E%E3%82%A4%E3%82%AF%E3%82%B2%E3%82%A4%E3%83%B3.jpg" class="page-img" alt="マイクゲイン">
         <div class="contact-box">
             解決しない場合はスタッフにお問い合わせください。
         </div>
-        <button class="btn-back" onclick="showPage('page-mic')">&lt;- 戻る</button>
-        <button class="btn-back" onclick="showPage('page-home')">&lt;- 最初に戻る</button>
+        <button class="btn-back" onclick="showPage('page-mic')">← 戻る</button>
+        <button class="btn-back" onclick="showPage('page-home')">← 最初に戻る</button>
     </div>
 
+    <!-- 6. アンプ選択 -->
     <div id="page-guitaramp" class="page-section">
         <ul class="breadcrumb">
             <li><a onclick="showPage('page-home')">トップ</a></li>
             <li><span>アンプ選択</span></li>
         </ul>
         <h2>ギターアンプの取り扱い説明書・トラブルシューティング</h2>
-        <button class="btn" onclick="showPage('page-marshall2000')">marshall2000</button>
-        <button class="btn" onclick="showPage('page-marshall900')">marshall900</button>
-        <button class="btn" onclick="showPage('page-jc')">jc-120</button>
-        <button class="btn" onclick="showPage('page-twinreverb')">twinreverb(制作中)</button>
-        <button class="btn-back" onclick="showPage('page-home')">&lt;- 戻る</button>
+        <button class="btn" onclick="showPage('page-marshall2000')">Marshall JCM2000</button>
+        <button class="btn" onclick="showPage('page-marshall900')">Marshall JCM900</button>
+        <button class="btn" onclick="showPage('page-jc')">Roland JC-120</button>
+        <button class="btn" onclick="showPage('page-twinreverb')">Fender Twin Reverb (制作中)</button>
+        <button class="btn-back" onclick="showPage('page-home')">← 戻る</button>
     </div>
 
+    <!-- 6-1. Marshall2000メニュー -->
     <div id="page-marshall2000" class="page-section">
         <ul class="breadcrumb">
             <li><a onclick="showPage('page-home')">トップ</a></li>
@@ -502,15 +532,15 @@
         <h2>Marshall2000利用方法・トラブルシューティング</h2>
         <button class="btn" onclick="showPage('page-dengen')">電源の付け方・消し方</button>
         <button class="btn" onclick="showPage('page-channel')">channelA、channelBについて</button>
-        <button class="btn" onclick="showPage('page-sendreturn')">センドリターンの利用方法</button>
-        <button class="btn-back" onclick="showPage('page-guitaramp')">&lt;- 戻る</button>
+        <button class="btn" onclick="showPage('page-sendretern')">センドリターンの利用方法</button>
+        <button class="btn-back" onclick="showPage('page-guitaramp')">← アンプ選択に戻る</button>
     </div>
 
+    <!-- 6-1-1. Marshall電源（2000/900共通） -->
     <div id="page-dengen" class="page-section">
         <ul class="breadcrumb">
             <li><a onclick="showPage('page-home')">トップ</a></li>
             <li><a onclick="showPage('page-guitaramp')">アンプ選択</a></li>
-            <li><a onclick="showPage('page-marshall2000')">Marshall2000、900</a></li>
             <li><span>電源の付け方・消し方</span></li>
         </ul>
         <h2>Marshall2000、900電源の付け方・消し方</h2>
@@ -518,12 +548,13 @@
             筐体left側に赤いボタン(power)と黒いボタン(standby)があります。<br><br>
             まず、赤いボタン(power)を押し、必ず2分待った後、黒いボタン(standby)を押してください。<br><br>
             退室の際は黒いボタンのみ消してください。
-            <img src="https://raw.githubusercontent.com/weststaff-collab/helppic/main/2000standby.jpg" class="page-img" alt="2000スイッチ">
-            <img src="https://raw.githubusercontent.com/weststaff-collab/helppic/main/900.jpg" class="page-img" alt="900スイッチ">
+            <img src="https://raw.githubusercontent.com/weststaff-collab/helppic/main/2000standby.jpg" class="page-img" alt="JCM2000 電源部">
+            <img src="https://raw.githubusercontent.com/weststaff-collab/helppic/main/900.jpg" class="page-img" alt="JCM900 電源部">
         </div>
-        <button class="btn-back" onclick="showPage('page-guitaramp')">&lt;- 戻る</button>
+        <button class="btn-back" onclick="showPage('page-guitaramp')">← アンプ選択に戻る</button>
     </div>
 
+    <!-- 6-1-2. Marshall2000 チャンネル -->
     <div id="page-channel" class="page-section">
         <ul class="breadcrumb">
             <li><a onclick="showPage('page-home')">トップ</a></li>
@@ -531,44 +562,45 @@
             <li><a onclick="showPage('page-marshall2000')">Marshall2000</a></li>
             <li><span>チャンネルについて</span></li>
         </ul>
-        <h2>Marshall2000channnelA、channelBについて</h2>
+        <h2>Marshall2000 channnelA、channelBについて</h2>
         <div class="contact-box">
             Marshall2000にはChannelA、ChannelBがあり、それぞれAがクリーン、クランチトーン、Bがオーバードライブ、ディストーションの音色を鳴らすことが出来ます。<br><br>
             CHA(channnelA)とCHB(channelB)の間にある小さいボタンを押すことでチャンネルの切り替えが出来ます。<br><br>
             それぞれのチャンネルにも小さいボタンがついていますが、そのボタンを押すことでCHAはクリーンからクランチ、CHBはオーバードライブからディストーションに切り替えることが出来ます。<br><br>
             フットスイッチを使用する場合は筐体背面のFOOTSWITCHジャックにフットスイッチをギター用シールドで接続してください。<br><br>
-            <img src="https://raw.githubusercontent.com/weststaff-collab/helppic/main/2000chab.jpg" class="page-img" alt="2000チャンネル">
-            <img src="https://raw.githubusercontent.com/weststaff-collab/helppic/main/fts.jpg" class="page-img" alt="フットスイッチ">
+            <img src="https://raw.githubusercontent.com/weststaff-collab/helppic/main/2000chab.jpg" class="page-img" alt="JCM2000 チャンネルスイッチ">
+            <img src="https://raw.githubusercontent.com/weststaff-collab/helppic/main/fts.jpg" class="page-img" alt="フットスイッチ接続部">
         </div>
-        <button class="btn-back" onclick="showPage('page-guitaramp')">&lt;- 戻る</button>
+        <button class="btn-back" onclick="showPage('page-marshall2000')">← Marshall2000トップに戻る</button>
     </div>
 
-    <div id="page-sendreturn" class="page-section">
+    <!-- 6-1-3. センドリターン共通解説 -->
+    <div id="page-sendretern" class="page-section">
         <ul class="breadcrumb">
             <li><a onclick="showPage('page-home')">トップ</a></li>
             <li><a onclick="showPage('page-guitaramp')">アンプ選択</a></li>
-            <li><a onclick="showPage('page-guitaramp')">ギターアンプ</a></li>
             <li><span>センドリターン</span></li>
         </ul>
         <h2>センドリターン使用について</h2>
         <div class="contact-box">
-            筐体の裏側にSEND、RETURNジャックがあります。 
+            筐体の裏側にSEND、RETERNジャックがあります。 
             <span>ディレイやリバーブなどの空間系の音を歪みによって潰されることなく使用したり</span>、 
             <span>マルチエフェクターでの音作りをプリアンプ(アンプでの音作り)を介さずエフェクターそのままの音を増幅させる(いわゆるリターン挿し)</span>目的で使用することができます。<br><br>
 
             <h3>空間系のセンドリターンについて</h3>
-            ギター側から出ているシールドはフロントジャックに接続し、筐体裏側のSENDに空間系エフェクターのinput、RETURNにoutputをシールドでそれぞれ接続してください。<br><br>
+            ギター側から出ているシールドはフロントジャックに接続し、筐体裏側のSENDに空間系エフェクターのinput、RETERNにoutputをシールドでそれぞれ接続してください。<br><br>
             JCの場合は筐体裏面のLINE OUTに挿してください。<br><br>
             こちらで完了です。<br><br>
 
             <h3>プリアンプを介さず音を出す(リターン挿し)方法について</h3>
             初めにエフェクター部分のボリュームが完全にゼロになっていることを確認してください。<br><br>
-            ギター側から出ているシールドをマルチエフェクター等のinputに挿し、マルチエフェクターのoutputからアンプ裏面のRETURNにシールドを接続してください。<br><br>
+            ギター側から出ているシールドをマルチエフェクター等のinputに挿し、マルチエフェクターのoutputからアンプ裏面のRETERNにシールドを接続してください。<br><br>
             アンプ前面のツマミは一切効かなくなります。音量調節、音作りはすべてマルチエフェクター側で行ってください。<br><br>
         </div>
-        <button class="btn-back" onclick="showPage('page-guitaramp')">&lt;- 戻る</button>
+        <button class="btn-back" onclick="showPage('page-guitaramp')">← アンプ選択に戻る</button>
     </div>
 
+    <!-- 6-2. Marshall900メニュー -->
     <div id="page-marshall900" class="page-section">
         <ul class="breadcrumb">
             <li><a onclick="showPage('page-home')">トップ</a></li>
@@ -578,10 +610,11 @@
         <h2>Marshall900利用方法・トラブルシューティング</h2>
         <button class="btn" onclick="showPage('page-dengen')">電源の付け方・消し方</button>
         <button class="btn" onclick="showPage('page-channel900')">channelA、channelBについて</button>
-        <button class="btn" onclick="showPage('page-sendreturn')">センドリターンの利用方法</button>
-        <button class="btn-back" onclick="showPage('page-guitaramp')">&lt;- 戻る</button>
+        <button class="btn" onclick="showPage('page-sendretern')">センドリターンの利用方法</button>
+        <button class="btn-back" onclick="showPage('page-guitaramp')">← アンプ選択に戻る</button>
     </div>
 
+    <!-- 6-2-2. Marshall900 チャンネル -->
     <div id="page-channel900" class="page-section">
         <ul class="breadcrumb">
             <li><a onclick="showPage('page-home')">トップ</a></li>
@@ -589,15 +622,16 @@
             <li><a onclick="showPage('page-marshall900')">Marshall900</a></li>
             <li><span>チャンネルについて</span></li>
         </ul>
-        <h2>Marshall900channnelA、channelBについて</h2>
+        <h2>Marshall900 channnelA、channelBについて</h2>
         <div class="contact-box">
             Marshall900にはChannelA、ChannelBがあり、それぞれAがクリーントーン、Bがディストーションの音色を鳴らすことが出来ます。それぞれ、右側のGAINノブで歪み具合を調整し、左側の2つのノブで音量、リバーブを調整してください。<br><br>
             フットスイッチを使用する場合は筐体背面のFOOTSWITCHジャックにフットスイッチをギター用シールドで接続してください。<br><br>
         </div>
-        <button class="btn-back" onclick="showPage('page-marshall900')">&lt;- 戻る</button>
-        <button class="btn-back" onclick="showPage('page-home')">&lt;- 最初に戻る</button>
+        <button class="btn-back" onclick="showPage('page-marshall900')">← Marshall900トップに戻る</button>
+        <button class="btn-back" onclick="showPage('page-home')">← 最初に戻る</button>
     </div>
 
+    <!-- 6-3. JC-120メニュー -->
     <div id="page-jc" class="page-section">
         <ul class="breadcrumb">
             <li><a onclick="showPage('page-home')">トップ</a></li>
@@ -608,10 +642,11 @@
         <button class="btn" onclick="showPage('page-dengenjc')">電源の付け方・消し方</button>
         <button class="btn" onclick="showPage('page-jcch')">channel1、channel2について</button>
         <button class="btn" onclick="showPage('page-vibcho')">Vibrato、chorusについて</button>
-        <button class="btn" onclick="showPage('page-sendreturn')">センドリターンについて</button>
-        <button class="btn-back" onclick="showPage('page-guitaramp')">&lt;- 戻る</button>
+        <button class="btn" onclick="showPage('page-sendretern')">センドリターンについて</button>
+        <button class="btn-back" onclick="showPage('page-guitaramp')">← アンプ選択に戻る</button>
     </div>
 
+    <!-- 6-3-1. JC 電源 -->
     <div id="page-dengenjc" class="page-section">
         <ul class="breadcrumb">
             <li><a onclick="showPage('page-home')">トップ</a></li>
@@ -621,13 +656,14 @@
         </ul>
         <h2>jazz chorus120電源の付け方・消し方</h2>
         <div class="contact-box">
-            筐体right側に黒いボタンがあります。1回押すとライトが点灯し、使用できます。<br><br>
+            筐体右側に黒いボタンがあります。1回押すとライトが点灯し、使用できます。<br><br>
             inputジャックに、high、lowとありますが、エフェクターやアクティブのギターを使用する場合はlowを使用してください。<br><br>
         </div>
-        <button class="btn-back" onclick="showPage('page-jc')">&lt;- 戻る</button>
-        <button class="btn-back" onclick="showPage('page-home')">&lt;- 最初に戻る</button>
+        <button class="btn-back" onclick="showPage('page-jc')">← JC-120トップに戻る</button>
+        <button class="btn-back" onclick="showPage('page-home')">← 最初に戻る</button>
     </div>
 
+    <!-- 6-3-2. JC チャンネル -->
     <div id="page-jcch" class="page-section">
         <ul class="breadcrumb">
             <li><a onclick="showPage('page-home')">トップ</a></li>
@@ -635,22 +671,24 @@
             <li><a onclick="showPage('page-jc')">JC-120</a></li>
             <li><span>チャンネルについて</span></li>
         </ul>
-        <h2>jazz chorus120CH1、CH2について</h2>
+        <h2>jazz chorus120 CH1、CH2について</h2>
         <div class="contact-box">
             <h3>CH1</h3>
             CH1はCH2と違い、フラットなクリーントーンとなり、CH2よりノイズが少ないです。センドリターンを使用する場合は機能しませんのでご注意下さい。<br><br>
             <h3>CH2</h3>
             CH2はクリーントーンに加え、軽いディストーション、リバーブ、筐体left側のVIB、CHO(Vibrato、Chorus)を使用できます。<br><br>
-            ディストーションはMarshallなどといった真空管アンプとは異なり、金属的な軽い音になります。音に太さを少し足したい時や低温を削ったような歪みが必要な時に使用します。<br><br>
+            ディストーションはMarshallなどといった真空管アンプとは異なり、金属的な軽い音になります。音に太さを少し足したい時や低温を削ったような歪み必要となる時に使用します。<br><br>
         </div>
         <h3>💡VIB、CHOについて知りたいですか？</h3>
-        <button class="btn" onclick="showPage('page-vibcho2')">Vibrato、chorusについて</button>
+        <button class="btn" onclick="showPage('page-vibcho')">Vibrato、chorusについて</button>
         <h3>💡センドリターンについて知りたいですか？</h3>
-        <button class="btn" onclick="showPage('page-sendreturn2')">センドリターンについて</button>
-        <button class="btn-back" onclick="showPage('page-jc')">&lt;- 戻る</button>
-        <button class="btn-back" onclick="showPage('page-home')">&lt;- 最初に戻る</button>
+        <button class="btn" onclick="showPage('page-sendretern')">センドリターンについて</button>
+        
+        <button class="btn-back" onclick="showPage('page-jc')">← JC-120トップに戻る</button>
+        <button class="btn-back" onclick="showPage('page-home')">← 最初に戻る</button>
     </div>
 
+    <!-- 6-3-3. JC コーラス・ビブラート -->
     <div id="page-vibcho" class="page-section">
         <ul class="breadcrumb">
             <li><a onclick="showPage('page-home')">トップ</a></li>
@@ -658,94 +696,116 @@
             <li><a onclick="showPage('page-jc')">JC-120</a></li>
             <li><span>Vibrato・Chorus</span></li>
         </ul>
-        <h2>jazz chorus120vibrato、chorusについて</h2>
+        <h2>jazz chorus120 vibrato、chorusについて</h2>
         <div class="contact-box">
             <h3>Vibratoについて</h3>
             VIBの部分につまみを合わせると、揺れるような音色になります。<br><br>
-            VIBの時のみleft側のSPEED、DEPTHのつまみが機能し、CHOの時は機能しません。<br><br>
+            VIBの時のみ左側のSPEED、DEPTHのつまみが機能し、CHOの時は機能しません。<br><br>
             それぞれSPEEDは揺れの速さ、DEPTHは揺れの深さを調節します。<br><br>
             <h3>Chorusについて</h3>
             CHOの部分につまみを合わせると2つのアンプとスピーカーを使い、片方で原音、もう片方でピッチを揺らした音色になります。<br><br>
             SPEED、DEPTHノブは機能しません。<br><br>
         </div>
-        <button class="btn-back" onclick="showPage('page-jc')">&lt;- 戻る</button>
-        <button class="btn-back" onclick="showPage('page-home')">&lt;- 最初に戻る</button>
+        <button class="btn-back" onclick="showPage('page-jc')">← JC-120トップに戻る</button>
+        <button class="btn-back" onclick="showPage('page-home')">← 最初に戻る</button>
     </div> 
 
-    <div id="page-vibcho2" class="page-section">
-        <ul class="breadcrumb">
-            <li><a onclick="showPage('page-home')">トップ</a></li>
-            <li><a onclick="showPage('page-guitaramp')">アンプ選択</a></li>
-            <li><a onclick="showPage('page-jc')">JC-120</a></li>
-            <li><a onclick="showPage('page-jcch')">チャンネルについて</a></li>
-            <li><span>Vibrato・Chorus</span></li>
-        </ul>
-        <h2>jazz chorus120vibrato、chorusについて</h2>
-        <div class="contact-box">
-            <h3>Vibratoについて</h3>
-            VIBの部分につまみを合わせると、揺れるような音色になります。<br><br>
-            VIBの時のみleft側のSPEED、DEPTHのつまみが機能し、CHOの時は機能しません。<br><br>
-            それぞれSPEEDは揺れの速さ、DEPTHは揺れの深さを調節します。<br><br>
-            <h3>Chorusについて</h3>
-            CHOの部分につまみを合わせると2つのアンプとスピーカーを使い、片方で原音、もう片方でピッチを揺らした音色になります。<br><br>
-            SPEED、DEPTHノブは機能しません。<br><br>
-        </div>
-        <button class="btn-back" onclick="showPage('page-jcch')">&lt;- 戻る</button>
-        <button class="btn-back" onclick="showPage('page-home')">&lt;- 最初に戻る</button>
-    </div> 
-
-    <div id="page-sendreturn2" class="page-section">
-        <ul class="breadcrumb">
-            <li><a onclick="showPage('page-home')">トップ</a></li>
-            <li><a onclick="showPage('page-guitaramp')">アンプ選択</a></li>
-            <li><a onclick="showPage('page-jc')">JC-120</a></li>
-            <li><a onclick="showPage('page-jcch')">チャンネルについて</a></li>
-            <li><span>センドリターン</span></li>
-        </ul>
-        <h2>センドリターン使用について</h2>
-        <div class="contact-box">
-            筐体の裏側にSEND、RETURNジャックがあります。 
-            <span>ディレイやリバーブなどの空間系の音を歪みによって潰されることなく使用したり</span>、 
-            <span>マルチエフェクターでの音作りをプリアンプ(アンプでの音作り)を介さずエフェクターそのままの音を増幅させる(いわゆるリターン挿し)</span>目的で使用することができます。<br><br>
-
-            <h3>空間系のセンドリターンについて</h3>
-            ギター側から出ているシールドはフロントジャックに接続し、筐体裏側のSENDに空間系エフェクターのinput、RETURNにoutputをシールドでそれぞれ接続してください。<br><br>
-            JCの場合は筐体裏面のLINE OUTに挿してください。<br><br>
-            こちらで完了です。<br><br>
-
-            <h3>プリアンプを介さず音を出す(リターン挿し)方法について</h3>
-            初めにエフェクター部分のボリュームが完全にゼロになっていることを確認してください。<br><br>
-            ギター側から出ているシールドをマルチエフェクター等のinputに挿し、マルチエフェクターのoutputからアンプ裏面のRETURNにシールドを接続してください。<br><br>
-            アンプ前面のツマミは一切効かなくなります。音量調節、音作りはすべてマルチエフェクター側で行ってください。<br><br>
-        </div>
-        <button class="btn-back" onclick="showPage('page-jcch')">&lt;- 戻る</button>
-        <button class="btn-back" onclick="showPage('page-home')">&lt;- 最初に戻る</button>
-    </div>
-
+ <!-- 6-4. Twin Reverb -->
     <div id="page-twinreverb" class="page-section">
         <ul class="breadcrumb">
             <li><a onclick="showPage('page-home')">トップ</a></li>
             <li><a onclick="showPage('page-guitaramp')">アンプ選択</a></li>
             <li><span>Twin Reverb</span></li>
         </ul>
-        <h2>Twin Reverb 利用方法</h2>
+        <h2>Fender Twin Reverb利用方法</h2>
         <div class="contact-box">
-            現在、コンテンツを制作中です。しばらくお待ちください。
+            Twin Reverbには「NORMALチャンネル」と「VIBRATOチャンネル」があります。<br>
+            基本的には、より細かい音作りができる<strong>「VIBRATOチャンネルの1（HIGH）」</strong>にシールドを接続するのがおすすめです。<br><br>
+
+            <h3 style="margin-top: 15px; margin-bottom: 5px; font-size: 1.1em; border-left: 4px solid #333; padding-left: 8px;">【電源を入れる手順】</h3>
+            <ol style="margin-top: 5px; padding-left: 20px;">
+                <li>アンプの<strong>VOLUMEが「0」になっていること</strong>を確認します。</li>
+                <li>ギターから「VIBRATOチャンネルの1」へシールドを接続します。</li>
+                <li>アンプ裏面の<strong>POWERスイッチをON</strong>にし、真空管が温まるまで<strong>必ず約3分待ちます</strong>。</li>
+                <li>3分経ったら、隣の<strong>STANDBYスイッチをON</strong>にします。</li>
+                <li>ギターを弾きながら、VOLUMEをゆっくり上げて調整してください。</li>
+            </ol>
+
+            <h3 style="margin-top: 20px; margin-bottom: 5px; font-size: 1.1em; border-left: 4px solid #333; padding-left: 8px;">【主なコントロール】</h3>
+            <ul style="margin-top: 5px; padding-left: 20px; list-style-type: disc;">
+                <li><strong>TREBLE / MIDDLE / BASS：</strong>高音 / 中音 / 低音の調整（まずはすべて「5」から始めるのがおすすめ）。</li>
+                <li><strong>BRIGHT：</strong>ONにすると高音域の抜けが良くなります。</li>
+                <li><strong>REVERB：</strong>音に広がりのある残響効果を加えます。</li>
+                <li><strong>SPEED / INTENSITY：</strong>ビブラート（トレモロ）効果の速さと深さ。使用しない時はどちらも「0」にします。</li>
+            </ul>
+
+            <h3 style="margin-top: 20px; margin-bottom: 5px; font-size: 1.1em; border-left: 4px solid #333; padding-left: 8px;">【電源を切る手順】</h3>
+            <ol style="margin-top: 5px; padding-left: 20px;">
+                <li>アンプの<strong>VOLUMEを必ず「0」に戻します</strong>。</li>
+                <li>アンプ裏面の<strong>STANDBYスイッチをOFF</strong>にします。</li>
+                <li><strong>POWERスイッチをOFF</strong>にします。</li>
+                <li>最後にシールドを抜いて終了です。</li>
+            </ol>
         </div>
-        <button class="btn-back" onclick="showPage('page-guitaramp')">&lt;- 戻る</button>
+        <button class="btn-back" onclick="showPage('page-guitaramp')">← アンプ選択に戻る</button>
     </div>
 
-</div>
+<!-- 7. ご意見を匿名でお聞かせください -->
+    <div id="page-feedback" class="page-section">
+        <ul class="breadcrumb">
+            <li><a onclick="showPage('page-home')">トップ</a></li>
+            <li><span>ご意見を匿名でお聞かせください</span></li>
+        </ul>
+        <h2>ご意見を匿名でお聞かせください</h2>
+        
+        <div class="contact-box">
+            <p style="margin-top:0; font-size:13px; color:#718096; line-height:1.5;">
+                ※このフォームは完全匿名です。お客様の個人情報は一切送信されません。<br>
+                ※今すぐトラブルを解決したい場合は、このフォームは使わず、直接受付のスタッフまでお申し付けください！
+            </p>
+            
+            <!-- ★ actionのURLは、のちほどFormspreeで発行するURLに書き換えます -->
+            <form action="https://formspree.io/f/xdaqawqe" method="POST" id="feedback-form">
+                
+                <!-- お客さんには見えない、送信元の特定用（ヘルプページからの送信と分かるようにする） -->
+                <input type="hidden" name="_subject" value="【ヘルプページ】お客様からのご不満・改善要望">
+                
+                <!-- ★ プルダウンメニューに変更した箇所 -->
+                <div style="margin-bottom: 15px;">
+                    <label style="display:block; font-weight:bold; margin-bottom:5px; font-size:14px;">ご意見のカテゴリ</label>
+                    <select name="項目・ページ" required style="width:100%; padding:10px; border:1px solid #cbd5e1; border-radius:6px; font-size:15px; background-color: #fff; cursor: pointer;">
+                        <option value="" disabled selected>--- 選択してください ---</option>
+                        <option value="スタッフの対応に関するご意見">スタッフの対応に関するご意見</option>
+                        <option value="店内内装、サービスに関するご意見">店内内装、サービスに関するご意見</option>
+                        <option value="その他のご意見">その他のご意見</option>
+
+                    </select>
+                </div>
+
+                <div style="margin-bottom: 15px;">
+                    <label style="display:block; font-weight:bold; margin-bottom:5px; font-size:14px;">具体的な内容</label>
+                    <textarea name="ご意見内容" rows="5" placeholder="ここに記入…" required style="width:100%; padding:10px; border:1px solid #cbd5e1; border-radius:6px; font-size:15px; resize:vertical;"></textarea>
+                </div>
+
+                <button type="submit" class="btn btn-no-q" style="background-color:#2b3044; color:white; justify-content:center; margin-top:10px; margin-bottom:0;">
+                    匿名で送信してお店に伝える
+                </button>
+            </form>
+        </div>
+        <button class="btn-back" onclick="showPage('page-home')">← トップに戻る</button>
+    </div>
 
 <script>
 function showPage(pageId) {
+    // すべてのページセクションを非表示にする
     const pages = document.querySelectorAll('.page-section');
     pages.forEach(page => page.classList.remove('active'));
 
+    // 指定されたIDのページを表示する
     const targetPage = document.getElementById(pageId);
     if (targetPage) {
         targetPage.classList.add('active');
-        // ページが切り替わったときに最上部へスクロールさせる
+        // ページが切り替わったときに最上部へスムーズにスクロールさせる
         window.scrollTo({top: 0, behavior: 'smooth'});
     }
 }
